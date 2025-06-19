@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -148,7 +149,7 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>基本的な改善提案</li>
                 </ul>
                 <a href="https://forms.gle/13UvftiTDADy7meQ7" target="_blank" class="block">
-                    <button class="w-full cta-button font-bold py-3 px-6 rounded-full transition-all duration-300">
+                    <button class="w-full bg-blue-900 text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-blue-800 transition-all duration-300">
                         無料相談する
                     </button>
                 </a>
@@ -170,7 +171,7 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>週次ミーティング</li>
                 </ul>
                 <a href="https://forms.gle/13UvftiTDADy7meQ7" target="_blank" class="block">
-                    <button class="w-full bg-gold hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-full transition-all duration-300">
+                    <button class="w-full bg-gold text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-yellow-500 transition-all duration-300">
                         無料相談する
                     </button>
                 </a>
@@ -190,7 +191,7 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>戦略設計</li>
                 </ul>
                 <a href="https://forms.gle/13UvftiTDADy7meQ7" target="_blank" class="block">
-                    <button class="w-full cta-button font-bold py-3 px-6 rounded-full transition-all duration-300">
+                    <button class="w-full bg-blue-900 text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-blue-800 transition-all duration-300">
                         無料相談する
                     </button>
                 </a>
@@ -479,15 +480,4 @@ const observer = new IntersectionObserver((entries) => {
 // 要素を監視対象に追加
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    observer.observe(section);
-});
-
-// ファーストビューは最初から表示
-document.querySelector('section').style.opacity = '1';
-document.querySelector('section').style.transform = 'translateY(0)';
-</script>
-
-</body>
-</html>
+    
