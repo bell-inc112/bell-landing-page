@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ミヤスク - 戦略から運用まで一気通貫のWEB制作</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .black { color: #000000; }
+        .bg-black { background-color: #000000; }
+        .green { color: #10B981; }
+        .bg-green { background-color: #10B981; }
+        .border-green { border-color: #10B981; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #1f2937 50%, #10B981 100%);
+        }
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cta-button {
+            background-color: #10B981 !important;
+            color: white !important;
+        }
+        .cta-button:hover {
+            background-color: #059669 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<!-- ファーストビュー -->
+<section class="gradient-bg text-white min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="floating-animation absolute top-20 left-20 w-32 h-32 bg-white rounded-full"></div>
+        <div class="floating-animation absolute bottom-20 right-20 w-24 h-24 bg-green rounded-full" style="animation-delay: 1s;"></div>
+        <div class="floating-animation absolute top-1/2 left-10 w-16 h-16 bg-white rounded-full" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10 fade-in">
+        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <span class="block text-4xl md:text-6xl green mb-6">戦略から運用まで一気通貫の</span>
+            <span class="block text-5xl md:text-7xl text-white">WEB制作</span>
+        </h1>
+        
+        <div class="text-3xl md:text-4xl font-bold mb-8 green">
+            ミヤスク
+        </div>
+        
+        <div class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+            <p class="mb-2">戦略設計→制作→運用→改善まで一気通貫対応</p>
+            <p>LP3日〜/HP2週間〜/EC1ヶ月〜</p>
+        </div>
+        
+        <a href="https://forms.gle/E17b4qgRKqX1rZmb8" target="_blank" class="inline-block">
+            <button class="cta-button font-bold py-4 px-12 rounded-full text-2xl transform hover:scale-105 transition-all duration-300 shadow-2xl">
+                <i class="fas fa-comments mr-3"></i>無料相談に申し込む
+            </button>
+        </a>
+        
+        <div class="mt-8 text-sm opacity-75">
+            <p><i class="fas fa-gift mr-2"></i>制作後2ヶ月の保守運用無料 | <i class="fas fa-globe mr-2"></i>全国対応</p>
+        </div>
+    </div>
+</section>
+
+<!-- こんなお悩みありませんか？ -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                こんな<span class="green">お悩み</span>ありませんか？
+            </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="flex items-start space-x-4 p-6 bg-red-50 rounded-2xl">
+                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-times text-white text-sm"></i>
+                </div>
+                <p class="text-gray-700 text-lg">ホームページを作ったけど全く問い合わせが来ない</p>
+            </div>
+            
+            <div class="flex items-start space-x-4 p-6 bg-red-50 rounded-2xl">
+                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-times text-white text-sm"></i>
+                </div>
+                <p class="text-gray-700 text-lg">制作会社に依頼したが「作って終わり」だった</p>
+            </div>
+            
+            <div class="flex items-start space-x-4 p-6 bg-red-50 rounded-2xl">
+                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-times text-white text-sm"></i>
+                </div>
+                <p class="text-gray-700 text-lg">ECサイトを作ったけど売上が上がらない</p>
+            </div>
+            
+            <div class="flex items-start space-x-4 p-6 bg-red-50 rounded-2xl">
+                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-times text-white text-sm"></i>
+                </div>
+                <p class="text-gray-700 text-lg">制作期間が長すぎて機会損失している</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ミヤスクが選ばれる理由 -->
+<section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                ミヤスクが<span class="green">選ばれる理由</span>
+            </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <i class="fas fa-chart-line text-4xl green mb-4"></i>
+                <h3 class="text-xl font-bold black mb-4">戦略設計から制作まで一気通貫</h3>
+                <p class="text-gray-600">ただ作るだけではなく、売上につながる戦略から設計</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <i class="fas fa-rocket text-4xl green mb-4"></i>
+                <h3 class="text-xl font-bold black mb-4">業界トップクラスのスピード納品</h3>
+                <p class="text-gray-600">LP：3日〜1週間 / HP：2週間〜1ヶ月 / EC：1ヶ月〜2ヶ月</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <i class="fas fa-handshake text-4xl green mb-4"></i>
+                <h3 class="text-xl font-bold black mb-4">制作後の運用・改善まで責任を持つ</h3>
+                <p class="text-gray-600">月額保守5万円で継続的な改善・運用支援</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <i class="fas fa-share-alt text-4xl green mb-4"></i>
+                <h3 class="text-xl font-bold black mb-4">SNS運用も同時対応可能</h3>
+                <p class="text-gray-600">制作後の集客まで一気通貫でサポート</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 料金プラン -->
+<section class="py-20 bg-black text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="green">料金プラン</span>
+            </h2>
+            <p class="text-xl opacity-90">用途に応じて最適なプランをご提案</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white bg-opacity-10 p-8 rounded-3xl hover:bg-opacity-20 transition-all duration-300 flex flex-col">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold green mb-2">LPプラン</h3>
+                    <div class="text-4xl font-bold green mb-4">20万円〜</div>
+                    <p class="text-gray-300">納期：3日〜1週間</p>
+                </div>
+                <ul class="space-y-3 mb-8 flex-grow">
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>ランディングページ制作</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>戦略設計・企画</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>レスポンシブ対応</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>基本的なSEO設定</li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="https://forms.gle/E17b4qgRKqX1rZmb8" target="_blank" class="block">
+                        <button class="w-full bg-green text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-green-600 transition-all duration-300">
+                            無料相談に申し込む
+                        </button>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 p-8 rounded-3xl hover:bg-opacity-20 transition-all duration-300 border-4 border-green relative flex flex-col">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span class="bg-green text-white px-4 py-1 rounded-full text-sm font-bold">人気No.1</span>
+                </div>
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold green mb-2">HPプラン</h3>
+                    <div class="text-4xl font-bold green mb-4">50万円〜</div>
+                    <p class="text-gray-300">納期：2週間〜1ヶ月</p>
+                </div>
+                <ul class="space-y-3 mb-8 flex-grow">
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>ホームページ制作</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>基本的なSEO設定込み</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>CMS構築</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>お問い合わせフォーム</li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="https://forms.gle/E17b4qgRKqX1rZmb8" target="_blank" class="block">
+                        <button class="w-full bg-green text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-green-600 transition-all duration-300">
+                            無料相談に申し込む
+                        </button>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 p-8 rounded-3xl hover:bg-opacity-20 transition-all duration-300 flex flex-col">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold green mb-2">ECプラン</h3>
+                    <div class="text-4xl font-bold green mb-4">50万円〜</div>
+                    <p class="text-gray-300">納期：1ヶ月〜2ヶ月</p>
+                </div>
+                <ul class="space-y-3 mb-8 flex-grow">
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>ECサイト構築</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>決済システム導入</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>商品管理機能</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green mr-3"></i>運用指導</li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="https://forms.gle/E17b4qgRKqX1rZmb8" target="_blank" class="block">
+                        <button class="w-full bg-green text-white px-8 py-3 rounded-full font-bold h-12 flex items-center justify-center hover:bg-green-600 transition-all duration-300">
+                            無料相談に申し込む
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <p class="text-xl green font-bold">※全プラン：制作後2ヶ月の保守運用無料</p>
+            <p class="text-lg mt-2">月額保守：5万円（3ヶ月目以降）</p>
+        </div>
+    </div>
+</section>
+
+<!-- 他社との比較 -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                <span class="green">他社との比較</span>
+            </h2>
+            <p class="text-xl text-gray-600">圧倒的なスピードと継続サポートが違います</p>
+        </div>
+        
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-gray-900 p-8 rounded-3xl">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-red-400 mb-6">一般的な制作会社</h3>
+                        <div class="space-y-4">
+                            <div class="bg-gray-800 p-4 rounded-xl">
+                                <p class="text-red-400 font-bold">LP：1〜2週間</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl">
+                                <p class="text-red-400 font-bold">HP：1〜2ヶ月</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl">
+                                <p class="text-red-400 font-bold">EC：2〜3ヶ月</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl">
+                                <p class="text-red-400 font-bold">作って終わり</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-green-400 mb-6">ミヤスク</h3>
+                        <div class="space-y-4">
+                            <div class="bg-gray-800 p-4 rounded-xl border-2 border-green-500">
+                                <p class="text-green-400 font-bold">LP：3日〜1週間</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl border-2 border-green-500">
+                                <p class="text-green-400 font-bold">HP：2週間〜1ヶ月</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl border-2 border-green-500">
+                                <p class="text-green-400 font-bold">EC：1ヶ月〜2ヶ月</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded-xl border-2 border-green-500">
+                                <p class="text-green-400 font-bold">運用・改善まで継続</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 制作フロー -->
+<section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                <span class="green">制作フロー</span>
+            </h2>
+            <p class="text-xl text-gray-600">戦略から運用まで一気通貫でサポート</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">無料相談</h3>
+                    <p class="text-gray-600">ヒアリング・現状分析・戦略提案</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">設計・制作</h3>
+                    <p class="text-gray-600">ワイヤーフレーム→デザイン→開発</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">納品・運用開始</h3>
+                    <p class="text-gray-600">テスト→納品→2ヶ月無料保守開始</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">継続改善</h3>
+                    <p class="text-gray-600">月次レポート・改善提案・運用サポート</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- よくある質問 -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                よくある<span class="green">質問</span>
+            </h2>
+        </div>
+        
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="bg-gray-50 p-8 rounded-3xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4 black">Q: 本当に3日でLP制作できますか？</h3>
+                <p class="text-gray-700">A: シンプルなLPなら3日、複雑なものでも1週間以内で納品します。事前の戦略設計とテンプレート活用により高速制作を実現しています。</p>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-3xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4 black">Q: 月額保守費5万円は何をしてもらえますか？</h3>
+                <p class="text-gray-700">A: サイト更新、基本的なSEO対策、改善提案、簡単な修正作業を月額で対応します。また、アクセス解析レポートも月次で提供いたします。</p>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-3xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4 black">Q: 制作後にSNS運用もお願いできますか？</h3>
+                <p class="text-gray-700">A: はい。弊社の別サービス「ソクセカ」と連携したSNS運用も可能です。WEB制作とSNS運用を一気通貫でサポートできます。</p>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-3xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4 black">Q: 全国対応していますか？</h3>
+                <p class="text-gray-700">A: はい。オンラインでの打ち合わせで全国対応しております。必要に応じて現地訪問も可能です。</p>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-3xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4 black">Q: 修正は何回まで対応してもらえますか？</h3>
+                <p class="text-gray-700">A: 制作期間中は基本的に回数制限なく修正対応いたします。ただし、大幅な仕様変更は別途お見積りとなる場合があります。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- お申し込み方法 -->
+<section class="py-20 bg-black text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <span class="green">お申し込み</span>方法
+            </h2>
+            <p class="text-xl opacity-90">まずは無料相談からお気軽にどうぞ</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">無料相談申し込み</h3>
+                    <p class="opacity-75">フォームまたはお電話で</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">オンライン打ち合わせ</h3>
+                    <p class="opacity-75">現状分析とヒアリング</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">企画提案・お見積り</h3>
+                    <p class="opacity-75">戦略提案と詳細見積り</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">制作開始</h3>
+                    <p class="opacity-75">ご契約後、即日制作開始</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="https://forms.gle/E17b4qgRKqX1rZmb8" target="_blank" class="inline-block">
+                    <button class="bg-green hover:bg-green-600 text-white font-bold py-4 px-12 rounded-full text-2xl transform hover:scale-105 transition-all duration-300 shadow-2xl pulse-animation">
+                        <i class="fas fa-comments mr-3"></i>無料相談に申し込む
+                    </button>
+                </a>
+                <p class="text-sm opacity-75 mt-4">※相談は完全無料です</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 会社概要 -->
+<section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 black">
+                <span class="green">会社概要</span>
+            </h2>
+        </div>
+        
+        <div class="max-w-3xl mx-auto bg-white p-12 rounded-3xl shadow-xl">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-gray-600 mb-2">会社名</h3>
+                    <p class="text-xl font-bold mb-6">株式会社BELL</p>
+                    
+                    <h3 class="font-bold text-gray-600 mb-2">代表取締役</h3>
+                    <p class="text-xl font-bold mb-6">横山大輝</p>
+                    
+                    <h3 class="font-bold text-gray-600 mb-2">設立</h3>
+                    <p class="text-xl font-bold mb-6">2024年1月12日</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-600 mb-2">所在地</h3>
+                    <p class="text-lg mb-6">〒104-0061<br>東京都中央区銀座一丁目22番11号<br>銀座大竹ビジデンス 2F</p>
+                    
+                    <h3 class="font-bold text-gray-600 mb-2">お問い合わせ</h3>
+                    <p class="text-lg green font-bold">
+                        <i class="fas fa-envelope mr-2"></i>info@bell-dai.jp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- フッター -->
+<footer class="bg-black text-white py-12">
+    <div class="container mx-auto px-4 text-center">
+        <div class="mb-8">
+            <h3 class="text-3xl font-bold green mb-4">ミヤスク</h3>
+            <p class="text-gray-400">戦略から運用まで一気通貫のWEB制作サービス</p>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-gray-400">© 2024 株式会社BELL. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// スムーススクロール
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// フェードインアニメーション
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// 要素を監視対象に追加
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    observer.observe(section);
+});
+
+// ファーストビューは最初から表示
+document.querySelector('section').style.opacity = '1';
+document.querySelector('section').style.transform = 'translateY(0)';
+</script>
+
+</body>
+</html>
