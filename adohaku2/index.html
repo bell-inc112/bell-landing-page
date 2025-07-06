@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アドハク - WEB広告運用代行サービス</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: white;
+        }
+        
+        .swipe-container {
+            height: 100vh;
+            display: flex;
+            transition: transform 0.3s ease-out;
+        }
+        
+        .swipe-section {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4444, #ff6b6b);
+            transition: width 0.3s ease-out;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #ff4444;
+            transform: scale(1.2);
+        }
+        
+        .swipe-hint {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 1000;
+        }
+        
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-features {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3);
+        }
+        
+        .guarantee-badge {
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ff4444;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .comparison-container {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .comparison-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-card.highlight {
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.2), rgba(255, 107, 107, 0.2));
+            border: 2px solid #ff4444;
+        }
+        
+        .comparison-percentage {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-percentage.red {
+            color: #ff4444;
+        }
+        
+        .comparison-percentage.gold {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .comparison-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .comparison-savings {
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .plans-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .plan-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            min-width: 250px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .plan-card.popular {
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.2), rgba(255, 107, 107, 0.2));
+            border: 2px solid #ff4444;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .plan-percentage {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .plan-budget {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .plan-features li:before {
+            content: "✓";
+            color: #4ade80;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .plan-button {
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 68, 68, 0.3);
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .media-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff4444;
+        }
+        
+        .media-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .media-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .google { color: #4285f4; }
+        .meta { color: #1877f2; }
+        .tiktok { color: #000000; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+        .youtube { color: #ff0000; }
+        .twitter { color: #1da1f2; }
+        .line { color: #00b900; }
+        
+        .guarantee-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .guarantee-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .guarantee-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .guarantee-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .company-info {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .company-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ff4444;
+        }
+        
+        .company-info p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #ff4444;
+            margin: 0 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+            
+            .plans-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="swipe-container" id="swipeContainer">
+        <!-- Section 1: Hero -->
+        <div class="swipe-section">
+            <div class="guarantee-badge">業界トップクラスの低手数料</div>
+            <div class="hero-title">業界平均手数料20%</div>
+            <div class="arrow">↓</div>
+            <div class="hero-subtitle">最低手数料12%</div>
+            <div class="hero-description">WEB広告運用代行</div>
+            <div style="color: #ff4444; font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">アドハク</div>
+            <div class="hero-features">
+                Google・Meta・TikTok・YouTube・Twitter・LINE広告対応｜初期費用0円｜最低予算月20万円
+            </div>
+            <a href="#" class="cta-button">
+                <i class="fas fa-comments"></i>
+                無料相談する
+            </a>
+        </div>
+
+        <!-- Section 2: Comparison -->
+        <div class="swipe-section">
+            <div class="section-title">圧倒的な手数料の安さ</div>
+            <div class="section-subtitle">一般的な代理店では20%程度の手数料を大幅削減</div>
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <div class="comparison-percentage red">20%</div>
+                    <div style="color: rgba(255, 255, 255, 0.8); font-weight: 600; margin-bottom: 10px;">一般的な代理店</div>
+                    <div class="comparison-description">月100万円なら20万円の手数料</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="comparison-card highlight">
+                    <div class="comparison-percentage gold">12%</div>
+                    <div style="color: #4ade80; font-weight: 600; margin-bottom: 10px;">アドハク</div>
+                    <div class="comparison-description">月100万円なら12万円の手数料</div>
+                    <div class="comparison-savings">年間96万円の削減！</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Plans -->
+        <div class="swipe-section">
+            <div class="section-title">3つのプランから選択</div>
+            <div class="section-subtitle">予算に応じて最適なプランをご提案</div>
+            <div class="plans-container">
+                <div class="plan-card">
+                    <div class="plan-name">ライトプラン</div>
+                    <div class="plan-percentage">18%</div>
+                    <div class="plan-budget">月額予算 20-50万円</div>
+                    <ul class="plan-features">
+                        <li>広告運用代行</li>
+                        <li>月次レポート</li>
+                        <li>基本的な改善提案</li>
+                    </ul>
+                    <button class="plan-button">無料相談する</button>
+                </div>
+                
+                <div class="plan-card popular">
+                    <div class="popular-badge">人気No.1</div>
+                    <div class="plan-name">スタンダードプラン</div>
+                    <div class="plan-percentage">15%</div>
+                    <div class="plan-budget">月額予算 50-200万円</div>
+                    <ul class="plan-features">
+                        <li>広告運用代行</li>
+                        <li>月次レポート</li>
+                        <li>LP制作サポート</li>
+                        <li>週次ミーティング</li>
+                    </ul>
+                    <button class="plan-button">無料相談する</button>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-name">プレミアムプラン</div>
+                    <div class="plan-percentage">12%</div>
+                    <div class="plan-budget">月額予算 200万円以上</div>
+                    <ul class="plan-features">
+                        <li>広告運用代行</li>
+                        <li>月次レポート</li>
+                        <li>LP制作サポート</li>
+                        <li>週次ミーティング</li>
+                        <li>戦略設計</li>
+                    </ul>
+                    <button class="plan-button">無料相談する</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Media Support -->
+        <div class="swipe-section">
+            <div class="section-title">6大媒体に完全対応</div>
+            <div class="section-subtitle">主要なWEB広告媒体をワンストップで運用</div>
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-icon google">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="media-name">Google広告</div>
+                </div>
+                <div class="media-card">
+                    <div class="media-icon meta">
+                        <i class="fab fa-meta"></i>
+                    </div>
+                    <div class="media-name">Meta広告</div>
+                </div>
+                <div class="media-card">
+                    <div class="media-icon tiktok">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="media-name">TikTok広告</div>
+                </div>
+                <div class="media-card">
+                    <div class="media-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="media-name">YouTube広告</div>
+                </div>
+                <div class="media-card">
+                    <div class="media-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="media-name">Twitter広告</div>
+                </div>
+                <div class="media-card">
+                    <div class="media-icon line">
+                        <i class="fab fa-line"></i>
+                    </div>
+                    <div class="media-name">LINE広告</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Guarantee -->
+        <div class="swipe-section">
+            <div class="section-title">お乗り換え保証</div>
+            <div class="section-subtitle">他社からの乗り換えならより安い手数料をご提案</div>
+            <div class="guarantee-container">
+                <div class="guarantee-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="guarantee-title">他社より1%でも高い場合</div>
+                <div style="color: #ffd700; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">より安い手数料をご提案</div>
+                <div class="guarantee-description">
+                    現在ご利用中の代理店の手数料をお教えください。より安い手数料でサービスをご提供いたします。
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: FAQ -->
+        <div class="swipe-section">
+            <div class="section-title">よくある質問</div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Q: 手数料18%〜12%の詳細を教えてください</div>
+                    <div class="faq-answer">A: プランに応じて手数料は明確に設定されています。追加費用は一切ございません。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 最低予算20万円から対応可能ですか？</div>
+                    <div class="faq-answer">A: はい。月額広告予算20万円から丁寧にサポートいたします。中小企業様のご利用も多数ございます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 他社からの乗り換え保証とは？</div>
+                    <div class="faq-answer">A: 現在ご利用中の代理店の手数料率をお教えいただければ、より安い手数料でご提供いたします。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: 契約期間の縛りはありますか？</div>
+                    <div class="faq-answer">A: 最低契約期間は3ヶ月です。短期間での効果検証をしていただき、継続をご判断いただけます。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Company Info -->
+        <div class="swipe-section">
+            <div class="section-title">会社概要</div>
+            <div class="company-info">
+                <h3>株式会社BELL</h3>
+                <p><strong>代表取締役：</strong>横山大輝</p>
+                <p><strong>設立：</strong>2024年1月12日</p>
+                <p><strong>所在地：</strong>〒104-0061<br>東京都中央区銀座一丁目22番11号<br>銀座大竹ビジデンス 2F</p>
+                <p><strong>お問い合わせ：</strong>info@bell-dai.jp</p>
+                <br>
+                <a href="#" class="cta-button">
+                    <i class="fas fa-comments"></i>
+                    無料相談する
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation" id="navigation">
+        <div class="nav-dot active" onclick="goToSection(0)"></div>
+        <div class="nav-dot" onclick="goToSection(1)"></div>
+        <div class="nav-dot" onclick="goToSection(2)"></div>
+        <div class="nav-dot" onclick="goToSection(3)"></div>
+        <div class="nav-dot" onclick="goToSection(4)"></div>
+        <div class="nav-dot" onclick="goToSection(5)"></div>
+        <div class="nav-dot" onclick="goToSection(6)"></div>
+    </div>
+
+    <div class="swipe-hint">
+        ← スワイプで次へ →
+    </div>
+
+    <script>
+        let currentSection = 0;
+        const totalSections = 7;
+        const swipeContainer = document.getElementById('swipeContainer');
+        const progressFill = document.getElementById('progressFill');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function updateUI() {
+            swipeContainer.style.transform = `translateX(-${currentSection * 100}vw)`;
+            progressFill.style.width = `${((currentSection + 1) / totalSections) * 100}%`;
+            
+            navDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+
+        function goToSection(index) {
+            currentSection = Math.max(0, Math.min(index, totalSections - 1));
+            updateUI();
+        }
+
+        function nextSection() {
+            if (currentSection < totalSections - 1) {
+                currentSection++;
+                updateUI();
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                updateUI();
+            }
+        }
+
+        // Touch events for mobile
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isDragging = true;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSection();
+                } else {
+                    prevSection();
+                }
+            }
+            
+            isDragging = false;
+        });
+
+        // Mouse events for desktop
+        let mouseStartX = 0;
+        let isMouseDragging = false;
+
+        document.addEventListener('mousedown', (e) => {
+            mouseStartX = e.clientX;
+            isMouseDragging = true;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isMouseDragging) return;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isMouseDragging) return;
+            
+            const endX = e.clientX;
+            const diffX = mouseStartX - endX;
+            
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSection();
+                } else {
+                    prevSection();
+                }
+            }
+            
+            isMouseDragging = false;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                nextSection();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                prevSection();
+            }
+        });
+
+        // Auto-advance (optional)
+        // setInterval(() => {
+        //     nextSection();
+        //     if (currentSection === totalSections - 1) {
+        //         currentSection = -1;
+        //     }
+        // }, 10000);
+
+        // Initialize
+        updateUI();
+    </script>
+</body>
+</html>
