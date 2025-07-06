@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アドハク - WEB広告運用代行サービス</title>
+    <meta name="description" content="業界トップクラスの低手数料でWEB広告運用代行を提供するアドハク。Google・Meta・TikTok・YouTube・X・LINE広告対応。初期費用0円、最低予算月20万円から。">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b2e 50%, #1a1a1a 100%);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b2e 50%, #1a1a1a 100%);
+        }
+        .text-gold {
+            color: #FFD700;
+        }
+        .bg-gold {
+            background-color: #FFD700;
+        }
+        .text-red-custom {
+            color: #ff4757;
+        }
+        .bg-red-custom {
+            background-color: #ff4757;
+        }
+        .platform-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            transition: transform 0.3s ease;
+        }
+        .platform-icon:hover {
+            transform: scale(1.1);
+        }
+        .comparison-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid #444;
+        }
+        .plan-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 10px;
+            border: 1px solid #444;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+        .plan-card.popular {
+            border: 2px solid #ff4757;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff4757;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, #ff4757 0%, #ff3742 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, #ff3742 0%, #ff2533 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .x-logo {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4">
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="inline-block bg-red-custom text-white px-4 py-2 rounded-full text-sm font-semibold mb-8">
+                業界トップクラスの低手数料
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="text-red-custom">一般的な代理店では手数料20%程度</span>
+            </h1>
+            
+            <div class="text-6xl md:text-8xl font-bold mb-4">
+                <i class="fas fa-arrow-down text-red-custom mb-4"></i>
+                <div class="text-gold">最低手数料12%</div>
+            </div>
+            
+            <h2 class="text-2xl md:text-3xl font-semibold mb-4">
+                WEB広告運用代行
+            </h2>
+            
+            <div class="text-red-custom text-xl font-bold mb-8">
+                アドハク
+            </div>
+            
+            <p class="text-lg mb-8 opacity-90">
+                Google・Meta・TikTok・YouTube・X・LINE広告対応 | 初期費用0円 | 最低予算月20万円
+            </p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhwOhx2DGMdRREVV8mwcaM3oQVG7jP9Bttu_53eZNdG6E0Q/viewform" target="_blank" class="cta-button">
+                <i class="fas fa-comments mr-2"></i>
+                無料相談する
+            </a>
+            
+            <div class="mt-8 text-sm opacity-70">
+                <i class="fas fa-shield-alt mr-2"></i>
+                お乗り換えサポート | 契約期間3ヶ月〜
+            </div>
+        </div>
+    </section>
+
+    <!-- 手数料比較セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                トップクラスの手数料の安さ
+            </h2>
+            <p class="text-center text-lg mb-12 opacity-90">
+                一般的な代理店では20%程度の手数料を大幅削減
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="comparison-card text-center">
+                    <h3 class="text-xl font-semibold mb-4 opacity-70">一般的な代理店</h3>
+                    <div class="text-6xl font-bold text-red-custom mb-4">20%</div>
+                    <p class="text-lg">月100万円なら20万円の手数料</p>
+                </div>
+                
+                <div class="comparison-card text-center">
+                    <h3 class="text-xl font-semibold mb-4 text-gold">アドハク</h3>
+                    <div class="text-6xl font-bold text-gold mb-4">12%</div>
+                    <p class="text-lg">月100万円なら12万円の手数料</p>
+                    <div class="text-gold font-bold text-xl mt-4">年間96万円の削減！</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プラン選択セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                3つのプランから選択
+            </h2>
+            <p class="text-center text-lg mb-12 opacity-90">
+                予算に応じて最適なプランをご提案
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- ライトプラン -->
+                <div class="plan-card">
+                    <h3 class="text-xl font-semibold mb-4">ライトプラン</h3>
+                    <div class="text-4xl font-bold text-red-custom mb-2">18%</div>
+                    <p class="text-sm opacity-70 mb-6">月額予算 20-50万円</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>広告運用代行</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>月次レポート</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>基本的な改善提案</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhwOhx2DGMdRREVV8mwcaM3oQVG7jP9Bttu_53eZNdG6E0Q/viewform" target="_blank" class="w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition duration-300 text-center block">
+                        無料相談する
+                    </a>
+                </div>
+                
+                <!-- スタンダードプラン -->
+                <div class="plan-card popular">
+                    <div class="popular-badge">人気No.1</div>
+                    <h3 class="text-xl font-semibold mb-4">スタンダードプラン</h3>
+                    <div class="text-4xl font-bold text-red-custom mb-2">15%</div>
+                    <p class="text-sm opacity-70 mb-6">月額予算 50-200万円</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>広告運用代行</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>月次レポート</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>LP制作サポート</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>週次ミーティング</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhwOhx2DGMdRREVV8mwcaM3oQVG7jP9Bttu_53eZNdG6E0Q/viewform" target="_blank" class="w-full cta-button text-center block">
+                        無料相談する
+                    </a>
+                </div>
+                
+                <!-- プレミアムプラン -->
+                <div class="plan-card">
+                    <h3 class="text-xl font-semibold mb-4">プレミアムプラン</h3>
+                    <div class="text-4xl font-bold text-red-custom mb-2">12%</div>
+                    <p class="text-sm opacity-70 mb-6">月額予算 200万円以上</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>広告運用代行</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>月次レポート</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>LP制作サポート</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>週次ミーティング</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>戦略設計</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhwOhx2DGMdRREVV8mwcaM3oQVG7jP9Bttu_53eZNdG6E0Q/viewform" target="_blank" class="w-full bg-gray-700 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition duration-300 text-center block">
+                        無料相談する
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6大媒体セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                6大媒体に完全対応
+            </h2>
+            <p class="text-center text-lg mb-12 opacity-90">
+                主要なWEB広告媒体をワンストップで運用
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <i class="fab fa-google text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Google広告</h3>
+                </div>
+                
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <i class="fab fa-facebook text-4xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">Meta広告</h3>
+                </div>
+                
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <i class="fab fa-tiktok text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">TikTok広告</h3>
+                </div>
+                
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <i class="fab fa-youtube text-4xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">YouTube広告</h3>
+                </div>
+                
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <svg class="x-logo" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold">X広告</h3>
+                </div>
+                
+                <div class="text-center">
+                    <div class="platform-icon">
+                        <i class="fab fa-line text-4xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold">LINE広告</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お乗り換えサポートセクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="section-title text-red-custom mb-12">
+                お乗り換えサポート
+            </h2>
+            <p class="text-lg mb-8 opacity-90">
+                他社からの乗り換えなら、より安い手数料をご提案いたします
+            </p>
+            
+            <div class="bg-gray-800 rounded-lg p-8 mb-8">
+                <div class="text-6xl text-blue-400 mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">他社より1%でも高い場合</h3>
+                <p class="text-lg mb-6">より安い手数料をご提案</p>
+                <p class="text-sm opacity-70">
+                    現在ご利用中の代理店の手数料をお教えください。より安い手数料でご提供いたします。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 選ばれる理由セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                アドハクが選ばれる理由
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-6xl text-gold mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">マーケティング全体支援</h3>
+                    <p class="opacity-70">広告だけでなく戦略から支援</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-6xl text-gold mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">専門性の高いチーム</h3>
+                    <p class="opacity-70">各媒体のエキスパートが運用</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-6xl text-gold mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">スピード対応</h3>
+                    <p class="opacity-70">迅速な改善提案と実行</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- よくある質問セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                よくある質問
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Q: 本当に手数料18%〜12%ですか？</h3>
+                    <p class="opacity-70">A: はい。プランに応じて手数料は明確に設定されています。他社のような隠れた費用は一切ございません。</p>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Q: 最低予算20万円から本当に対応してもらえますか？</h3>
+                    <p class="opacity-70">A: はい。月額広告予算20万円から丁寧にサポートいたします。中小企業様のご利用も多数ございます。</p>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Q: 他社からの乗り換えサポートとは具体的にどのような内容ですか？</h3>
+                    <p class="opacity-70">A: 現在ご利用中の代理店の手数料率をお教えいただければ、より安い手数料でご提供いたします。</p>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Q: 契約期間の縛りはどのくらいですか？</h3>
+                    <p class="opacity-70">A: 最低契約期間は3ヶ月です。短期間での効果検証をしていただき、継続をご判断いただけます。</p>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-3">Q: どの媒体から始めるのがおすすめですか？</h3>
+                    <p class="opacity-70">A: お客様の業界・ターゲット・予算に応じて最適な媒体をご提案いたします。まずは無料相談でお聞かせください。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA セクション -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">
+                まずは無料相談から始めませんか？
+            </h2>
+            <p class="text-lg mb-8 opacity-90">
+                お客様の課題に合わせた最適なプランをご提案いたします
+            </p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhwOhx2DGMdRREVV8mwcaM3oQVG7jP9Bttu_53eZNdG6E0Q/viewform" target="_blank" class="cta-button text-2xl py-4 px-8">
+                <i class="fas fa-comments mr-2"></i>
+                無料相談する
+            </a>
+        </div>
+    </section>
+
+    <!-- 会社概要セクション -->
+    <section class="py-20 px-4 bg-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="section-title text-red-custom mb-12">
+                会社概要
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="flex">
+                        <span class="font-semibold w-24">会社名</span>
+                        <span>株式会社BELL</span>
+                    </div>
+                    <div class="flex">
+                        <span class="font-semibold w-24">代表取締役</span>
+                        <span>横山大輝</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex">
+                        <span class="font-semibold w-32">所在地</span>
+                        <span>〒104-0061<br>東京都中央区銀座一丁目22番11号<br>銀座大竹ビジデンス 2F</span>
+                    </div>
+                    <div class="flex">
+                        <span class="font-semibold w-32">お問い合わせ</span>
+                        <span>info@bell-dai.jp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="py-10 px-4 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-sm opacity-70">
+                © 2024 株式会社BELL. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
