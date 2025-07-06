@@ -6,523 +6,643 @@
     <title>SNS運用代行サービス「ソクセカ」- 1ヶ月無料トライアル</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
+        body {
             font-family: 'Noto Sans JP', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #0f766e 75%, #115e59 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f766e 75%, #047857 100%);
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #0f766e 70%, #115e59 100%);
+        .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f766e 75%, #047857 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -20%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .circle-2 {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 15%;
+            animation: pulse 6s ease-in-out infinite;
+        }
+        
+        .circle-3 {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 80%;
+            animation: pulse 5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
         }
         
         .gold-text {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4a 50%, #f59e0b 100%);
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b  50%, #d97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
         }
         
         .cyan-text {
             color: #06b6d4;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
         }
         
-        .red-pill {
+        .red-badge {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            border-radius: 50px;
-            padding: 8px 20px;
             color: white;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
-        .blur-circle {
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.3;
+        @keyframes glow {
+            from { box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
+            to { box-shadow: 0 4px 25px rgba(239, 68, 68, 0.5); }
         }
         
-        .service-card {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(51, 65, 85, 0.5);
-            border-radius: 16px;
-            padding: 2rem;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-        }
-        
-        .black-cta {
-            background: linear-gradient(135deg, #000000 0%, #1f2937 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             padding: 2rem;
-            margin: 3rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .cta-button {
             background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
             color: white;
             padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-block;
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 6px 30px rgba(6, 182, 212, 0.4);
         }
         
-        .stats-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
+        .black-cta-section {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
-        }
-        
-        .problem-item {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-        }
-        
-        .faq-item {
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
+            margin: 2rem 0;
         }
         
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            color: white;
-        }
-        
-        .step-number {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #ffd700 0%, #f59e0b 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .feature-icon.crown {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        
+        .feature-icon.chart {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+        
+        .feature-icon.target {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .stats-number {
+            font-size: 2rem;
             font-weight: 900;
-            color: #000;
-            margin: 0 auto 1rem;
+            color: #06b6d4;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+        
+        .problem-item {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .solution-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .company-info {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
-<body class="gradient-bg text-white">
-    <!-- Background decorative elements -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="blur-circle absolute w-96 h-96 bg-cyan-500 -top-48 -left-48"></div>
-        <div class="blur-circle absolute w-80 h-80 bg-blue-500 top-1/4 -right-40"></div>
-        <div class="blur-circle absolute w-96 h-96 bg-teal-500 -bottom-48 left-1/4"></div>
-    </div>
-    
-    <!-- Header -->
-    <header class="relative z-10 flex justify-end p-6">
-        <div class="red-pill">
-            今だけ！
-        </div>
-    </header>
-    
+<body>
     <!-- Hero Section -->
-    <section class="relative z-10 text-center px-6 py-12">
-        <h1 class="text-5xl md:text-7xl font-900 mb-6 leading-tight">
-            <span class="gold-text">1ヶ月間 無料トライアル</span><br>
-            <span class="text-3xl md:text-4xl text-gray-300">30万フォロワーの実務家が</span><br>
-            <span class="cyan-text text-4xl md:text-5xl">あなたのSNS成長をサポートします</span>
-        </h1>
+    <section class="hero-section min-h-screen flex items-center justify-center py-20 px-4 relative">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
         
-        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
-            限定3社｜自社SNS総フォロワー30万人｜完全丸投げ対応｜撮影・企画・投稿・分析すべて込み
-        </p>
-        
-        <div class="mb-8">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" target="_blank" class="cta-button">
-                <i class="fas fa-paper-plane"></i>
-                無料トライアルに申し込む
-            </a>
-        </div>
-        
-        <p class="text-sm text-gray-400">
-            <i class="fas fa-shield-alt"></i> 無料トライアルには審査があります｜<i class="fas fa-clock"></i> お申し込みはお早めに
-        </p>
-    </section>
-    
-    <!-- Service Content -->
-    <section class="relative z-10 px-6 py-12">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-900 text-center mb-4">
-                <span class="cyan-text">1ヶ月無料</span>で提供する内容
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="mb-8">
+                <span class="red-badge">今だけ！</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+                <span class="gold-text">1ヶ月間 無料トライアル</span>
+            </h1>
+            
+            <h2 class="text-3xl md:text-4xl text-white mb-8 font-bold">
+                30万フォロワーの実務家が<br>
+                <span class="cyan-text">あなたのSNS成長をサポートします</span>
             </h2>
-            <p class="text-center text-gray-300 mb-12">
-                限定3社のみ - 完全無料でプロのSNS運用を体験
+            
+            <p class="text-xl text-white mb-12 opacity-90">
+                限定3社｜自社SNS総フォロワー30万人｜完全丸投げ対応｜撮影・企画・投稿・分析すべて込み
             </p>
             
-            <div class="grid md:grid-cols-4 gap-6 mb-12">
-                <div class="service-card text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-700 mb-2">戦略コンサルティング</h3>
-                    <p class="text-gray-300">ヒアリング＋企画構成</p>
-                </div>
-                
-                <div class="service-card text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="text-xl font-700 mb-2">動画編集</h3>
-                    <p class="text-gray-300">月6〜12本（ショート・リール対応）</p>
-                </div>
-                
-                <div class="service-card text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-700 mb-2">投稿代行</h3>
-                    <p class="text-gray-300">1ヶ月レポート提出</p>
-                </div>
-                
-                <div class="service-card text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-700 mb-2">成果報酬対応</h3>
-                    <p class="text-gray-300">結果に応じて報酬設定</p>
-                </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" class="cta-button">
+                <i class="fas fa-rocket mr-2"></i>無料トライアルに申し込む
+            </a>
+            
+            <div class="disclaimer mt-6">
+                ※審査有り、お申し込み順にご対応いたします
             </div>
         </div>
     </section>
-    
-    <!-- CTA Section -->
-    <section class="relative z-10 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="black-cta text-center">
-                <p class="text-xl mb-6">
-                    「<span class="gold-text">無料トライアル</span>」で支援します。まずは実力をご確認ください。
+
+    <!-- Service Content Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-4">
+                <span class="cyan-text">1ヶ月無料</span><span class="text-white">で提供する内容</span>
+            </h2>
+            <p class="text-center text-white mb-12 opacity-90">
+                限定3社のみ - 無料トライアルでプロのSNS運用を体験
+            </p>
+            
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="glass-card text-center">
+                    <div class="feature-icon crown mx-auto">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">戦略コンサルティング</h3>
+                    <p class="text-white opacity-80">ヒアリング＋企画構成</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <div class="feature-icon chart mx-auto">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">動画編集</h3>
+                    <p class="text-white opacity-80">月6〜12本（ショート・リール対応）</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <div class="feature-icon target mx-auto">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">投稿代行</h3>
+                    <p class="text-white opacity-80">1分析レポート提出</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <div class="feature-icon crown mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">成果報酬対応</h3>
+                    <p class="text-white opacity-80">結果に応じて調整可能</p>
+                </div>
+            </div>
+            
+            <div class="black-cta-section">
+                <p class="text-white text-xl mb-6">
+                    「無料トライアル」で支援します。まずは実力をご確認ください。
                 </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" target="_blank" class="cta-button">
-                    <i class="fas fa-calendar-check"></i>
-                    まずは無料面談を申し込む
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" class="cta-button">
+                    <i class="fas fa-phone mr-2"></i>まずは無料面談を申し込む
                 </a>
             </div>
         </div>
     </section>
-    
+
     <!-- Why Section -->
-    <section class="relative z-10 px-6 py-12">
+    <section class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 なぜ<span class="cyan-text">ソクセカ</span>は成果が出るのか？
             </h2>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="service-card text-center">
-                    <div class="feature-icon">
+                <div class="glass-card text-center">
+                    <div class="feature-icon crown mx-auto">
                         <i class="fas fa-crown"></i>
                     </div>
-                    <h3 class="text-xl font-700 mb-4 cyan-text">インフルエンサーがPM</h3>
-                    <p class="text-gray-300">
+                    <h3 class="text-xl font-bold text-white mb-4">インフルエンサーがPM</h3>
+                    <p class="text-white opacity-80">
                         フォロワーを伸ばし続けた"プロ"が戦略から実行までリード
                     </p>
                 </div>
                 
-                <div class="service-card text-center">
-                    <div class="feature-icon">
+                <div class="glass-card text-center">
+                    <div class="feature-icon chart mx-auto">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-700 mb-4 cyan-text">自社で30万人到達の実績</h3>
-                    <p class="text-gray-300">
-                        SNS経由で問い合わせ20倍達成。1ヶ月で2万人増フォロワー獲得も実現
+                    <h3 class="text-xl font-bold text-white mb-4">自社で30万人到達の実績</h3>
+                    <p class="text-white opacity-80">
+                        SNSだけで問い合わせ20倍、1ヶ月で2万人増フォロワー獲得も実現
                     </p>
-                    <p class="text-xs text-gray-500 mt-2">
+                    <div class="disclaimer mt-4">
                         ※当社実績例。効果には個人差があります
-                    </p>
+                    </div>
                 </div>
                 
-                <div class="service-card text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
+                <div class="glass-card text-center">
+                    <div class="feature-icon target mx-auto">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3 class="text-xl font-700 mb-4 cyan-text">丸投げOK×成果報酬対応</h3>
-                    <p class="text-gray-300">
+                    <h3 class="text-xl font-bold text-white mb-4">丸投げOK×成果報酬対応</h3>
+                    <p class="text-white opacity-80">
                         撮影・編集・投稿・分析までフル対応。完全成果報酬プランも選択可能
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Problems Section -->
-    <section class="relative z-10 px-6 py-12">
+    <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 こんな<span class="cyan-text">お悩み</span>ありませんか？
             </h2>
             
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-4">
                 <div class="problem-item">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-exclamation-circle text-red-500"></i>
-                        <span>広告費をかけても問い合わせが来ない</span>
-                    </div>
+                    <i class="fas fa-times-circle text-2xl"></i>
+                    <span>広告費をかけても問い合わせが来ない</span>
                 </div>
-                
                 <div class="problem-item">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-exclamation-circle text-red-500"></i>
-                        <span>SNSをやっているが会社の売上につながっていない</span>
-                    </div>
+                    <i class="fas fa-times-circle text-2xl"></i>
+                    <span>SNSをやっているが、会社の売上につながっていない</span>
                 </div>
-                
                 <div class="problem-item">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-exclamation-circle text-red-500"></i>
-                        <span>外注したSNSが「投稿代行」に終わっている</span>
-                    </div>
+                    <i class="fas fa-times-circle text-2xl"></i>
+                    <span>外注したSNSが「投稿代行」に終わっている</span>
                 </div>
-                
                 <div class="problem-item">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-exclamation-circle text-red-500"></i>
-                        <span>経営陣に説明できる成果が出ない</span>
-                    </div>
+                    <i class="fas fa-times-circle text-2xl"></i>
+                    <span>経営陣に説明できる成果が出ない</span>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Results Section -->
-    <section class="relative z-10 px-6 py-12">
+    <section class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 実績（一部抜粋）
             </h2>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="stats-card">
-                    <h3 class="text-xl font-700 mb-4 cyan-text">美容クリニック様</h3>
-                    <div class="text-4xl font-900 mb-2">
-                        <span class="text-gray-400">1,000</span>
-                        <span class="mx-4">→</span>
-                        <span class="gold-text">21,000</span>
+                <div class="glass-card text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">美容クリニック様</h3>
+                    <div class="stats-number">1,000 → 21,000</div>
+                    <p class="text-white opacity-80 mt-2">フォロワー数向上事例（1ヶ月）</p>
+                    <div class="disclaimer mt-4">
+                        ※当社支援実績の一例です。効果には個人差があります
                     </div>
-                    <p class="text-gray-300">フォロワー数向上事例（1ヶ月）</p>
-                    <p class="text-xs text-gray-500 mt-2">
-                        ※個別の成果であり、効果を保証するものではありません
-                    </p>
                 </div>
                 
-                <div class="stats-card">
-                    <h3 class="text-xl font-700 mb-4 cyan-text">BtoB IT企業様</h3>
-                    <div class="text-4xl font-900 mb-2">
-                        <span class="text-gray-400">月1件</span>
-                        <span class="mx-4">→</span>
-                        <span class="gold-text">月20件</span>
+                <div class="glass-card text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">BtoB IT企業様</h3>
+                    <div class="stats-number">月1件 → 月20件</div>
+                    <p class="text-white opacity-80 mt-2">SNS経由問い合わせ増加事例</p>
+                    <div class="disclaimer mt-4">
+                        ※個別の成果事例であり、同様の効果を保証するものではありません
                     </div>
-                    <p class="text-gray-300">SNS経由問い合わせ増加事例</p>
-                    <p class="text-xs text-gray-500 mt-2">
-                        ※効果には個人差があります
-                    </p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Concerns Section -->
-    <section class="relative z-10 px-6 py-12">
+
+    <!-- Solutions Section -->
+    <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 こんな心配ありませんか？
             </h2>
             
-            <div class="space-y-8">
-                <div class="service-card">
-                    <h3 class="text-xl font-700 mb-4 text-red-400">
+            <div class="space-y-6">
+                <div class="solution-item">
+                    <h3 class="text-xl font-bold text-white mb-4">
                         「また投稿代行だけで終わるのでは？」
                     </h3>
-                    <p class="text-gray-300">
+                    <p class="text-white opacity-90">
                         → 戦略から分析まで一気通貫でサポート<br>
                         企画構成・撮影・編集・投稿・効果測定・改善提案まで全て込み
                     </p>
                 </div>
                 
-                <div class="service-card">
-                    <h3 class="text-xl font-700 mb-4 text-red-400">
+                <div class="solution-item">
+                    <h3 class="text-xl font-bold text-white mb-4">
                         「業界のことを理解してもらえるか？」
                     </h3>
-                    <p class="text-gray-300">
+                    <p class="text-white opacity-90">
                         → 30業界以上の支援実績あり<br>
-                        美容・IT・製造・飲食・不動産など幅広い業界で成果を実現
+                        美容・IT・製造・飲食・不動産など幅広い業界で成果創出を目指します
                     </p>
                 </div>
                 
-                <div class="service-card">
-                    <h3 class="text-xl font-700 mb-4 text-red-400">
+                <div class="solution-item">
+                    <h3 class="text-xl font-bold text-white mb-4">
                         「本当に成果が出るのか不安…」
                     </h3>
-                    <p class="text-gray-300">
+                    <p class="text-white opacity-90">
                         → まず1ヶ月無料トライアルでお試しください<br>
-                        実際の成果を確認してから継続をご判断いただけます
+                        実際の成果をご確認いただいてから継続をご判断いただけます
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- FAQ Section -->
-    <section class="relative z-10 px-6 py-12">
+    <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 よくある質問
             </h2>
             
             <div class="space-y-6">
                 <div class="faq-item">
-                    <h3 class="text-lg font-700 mb-3 cyan-text">
+                    <h3 class="text-xl font-bold text-white mb-2">
                         Q: 本当に無料ですか？追加費用は発生しませんか？
                     </h3>
-                    <p class="text-gray-300">
-                        A: 1ヶ月間は無料トライアルです。撮影・編集・投稿・分析レポートまで無料で提供いたします。継続時は別途料金が発生します。
+                    <p class="text-white opacity-90">
+                        A: 1ヶ月間の無料トライアルでは、撮影・編集・投稿・分析レポートまで全て無料で提供いたします。ただし、審査があります。継続利用時は別途料金が発生します。
                     </p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="text-lg font-700 mb-3 cyan-text">
+                    <h3 class="text-xl font-bold text-white mb-2">
                         Q: どんな業界でも対応可能ですか？
                     </h3>
-                    <p class="text-gray-300">
-                        A: はい。これまで30業界以上で実績があります。BtoB・BtoC問わず、お客様の業界に合わせた最適な戦略をご提案します。
+                    <p class="text-white opacity-90">
+                        A: これまで30業界以上で実績があります。BtoB・BtoC問わず、お客様の業界に合わせた最適な戦略をご提案いたします。ただし、業界・商材によっては対応できない場合があります。
                     </p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="text-lg font-700 mb-3 cyan-text">
+                    <h3 class="text-xl font-bold text-white mb-2">
                         Q: 成果が出るまでの期間はどのくらいですか？
                     </h3>
-                    <p class="text-gray-300">
-                        A: 早ければ2週間程度でフォロワー増加やエンゲージメント向上を実感いただけます。問い合わせ増加などの売上直結効果は1〜2ヶ月を目安にお考えください。
+                    <p class="text-white opacity-90">
+                        A: 早ければ2週間程度でフォロワー増加やエンゲージメント向上を実感いただけることがあります。問い合わせ増加などの売上直結効果は1〜2ヶ月を目安にお考えください。ただし、効果には個人差があります。
                     </p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="text-lg font-700 mb-3 cyan-text">
+                    <h3 class="text-xl font-bold text-white mb-2">
                         Q: 契約期間の縛りはありますか？
                     </h3>
-                    <p class="text-gray-300">
-                        A: 1ヶ月の無料期間終了後、継続は任意です。強引な営業は一切行いませんのでご安心ください。
+                    <p class="text-white opacity-90">
+                        A: 1ヶ月の無料トライアル期間終了後、継続は任意です。強引な営業は一切行いませんのでご安心ください。
                     </p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="text-lg font-700 mb-3 cyan-text">
+                    <h3 class="text-xl font-bold text-white mb-2">
                         Q: どのSNSに対応していますか？
                     </h3>
-                    <p class="text-gray-300">
+                    <p class="text-white opacity-90">
                         A: Instagram、TikTok、YouTube、X（旧Twitter）など主要SNSに対応。お客様の業界・ターゲットに最適なプラットフォームをご提案します。
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Process Section -->
-    <section class="relative z-10 px-6 py-12">
+
+    <!-- Application Process Section -->
+    <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-900 text-center mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
                 申し込み方法
             </h2>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="step-number">1</div>
-                    <h3 class="text-xl font-700 mb-4">お申し込み</h3>
-                    <p class="text-gray-300">フォームからお申し込み</p>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="glass-card text-center">
+                    <div class="step-number mx-auto">1</div>
+                    <h3 class="text-xl font-bold text-white mb-4">お申し込み</h3>
+                    <p class="text-white opacity-80">下記フォームよりお申し込み</p>
                 </div>
                 
-                <div class="text-center">
-                    <div class="step-number">2</div>
-                    <h3 class="text-xl font-700 mb-4">オンライン面談</h3>
-                    <p class="text-gray-300">現状ヒアリング・戦略提案</p>
+                <div class="glass-card text-center">
+                    <div class="step-number mx-auto">2</div>
+                    <h3 class="text-xl font-bold text-white mb-4">無料面談</h3>
+                    <p class="text-white opacity-80">オンライン面談で詳細をヒアリング</p>
                 </div>
                 
-                <div class="text-center">
-                    <div class="step-number">3</div>
-                    <h3 class="text-xl font-700 mb-4">無料支援開始</h3>
-                    <p class="text-gray-300">オンライン面談後→支援スタート（※審査あり）</p>
+                <div class="glass-card text-center">
+                    <div class="step-number mx-auto">3</div>
+                    <h3 class="text-xl font-bold text-white mb-4">無料支援開始</h3>
+                    <p class="text-white opacity-80">オンライン面談後→支援スタート（※審査あり）</p>
                 </div>
             </div>
             
-            <div class="text-center mt-12">
-                <p class="text-red-400 text-lg font-700 mb-6">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    注意：今月の募集はあと2社で終了です
+            <div class="text-center">
+                <p class="text-white text-xl mb-6">
+                    <span class="text-red-400 font-bold">注意：今月の募集はあと2社で終了です</span>
                 </p>
-                <p class="text-gray-300 mb-8">お申し込みはお早めに！</p>
-                
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" target="_blank" class="cta-button">
-                    <i class="fas fa-rocket"></i>
-                    今すぐ無料トライアルに申し込む
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" class="cta-button text-2xl py-6 px-12">
+                    <i class="fas fa-rocket mr-3"></i>今すぐ無料トライアルに申し込む
                 </a>
+                <p class="text-white opacity-80 mt-4">
+                    お申し込みはお早めに！
+                </p>
             </div>
         </div>
     </section>
-    
-    <!-- Footer -->
-    <footer class="relative z-10 px-6 py-12 border-t border-gray-700">
+
+    <!-- Company Info Section -->
+    <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-900 mb-4">会社概要</h3>
-                <p class="text-gray-300">
-                    私たちは、SNSマーケティングの専門家として、<br>
-                    企業様のデジタル成長をサポートしています。
-                </p>
-            </div>
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">
+                会社概要
+            </h2>
             
-            <div class="bg-gray-800 rounded-lg p-6 mb-8">
-                <h4 class="text-lg font-700 mb-4 text-red-400">重要な注意事項</h4>
-                <ul class="text-sm text-gray-300 space-y-2">
+            <div class="company-info">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">会社名</h3>
+                        <p class="text-gray-700 mb-6">株式会社BELL</p>
+                        
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">代表取締役</h3>
+                        <p class="text-gray-700 mb-6">横山大輝</p>
+                        
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">設立</h3>
+                        <p class="text-gray-700">2024年1月12日</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">所在地</h3>
+                        <p class="text-gray-700 mb-6">
+                            〒104-0061<br>
+                            東京都中央区銀座一丁目22番11号<br>
+                            銀座大竹ビジデンス 2F
+                        </p>
+                        
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">お問い合わせ</h3>
+                        <p class="text-red-600 font-semibold">
+                            <i class="fas fa-envelope mr-2"></i>info@bell-dai.jp
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="disclaimer">
+                <h3 class="text-lg font-bold text-white mb-4">重要な注意事項</h3>
+                <ul class="space-y-2 text-sm">
                     <li>• 本サービスの効果には個人差があります</li>
                     <li>• 過去の実績は将来の成果を保証するものではありません</li>
                     <li>• 無料トライアルには審査があります</li>
                     <li>• 継続利用時は別途料金が発生します</li>
                     <li>• 業界・商材によっては対応できない場合があります</li>
+                    <li>• 掲載している数値は当社が直接支援した企業様の実際の成果です</li>
+                    <li>• 個人情報保護のため企業名は伏せています</li>
                 </ul>
             </div>
-            
-            <div class="text-center text-gray-500 text-sm">
-                <p>© 2024 ソクセカ. All rights reserved.</p>
-                <p class="mt-2">
-                    掲載している数値は当社が直接支援した企業様の実際の成果です。<br>
-                    効果測定はGoogleアナリティクス等の第三者ツールを使用しています。
-                </p>
-            </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6 text-white">
+                <span class="cyan-text">限定3社</span>のみ募集中
+            </h2>
+            <p class="text-xl text-white mb-8 opacity-90">
+                今すぐ無料トライアルでプロのSNS運用を体験してください
+            </p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqjK6_pfg9fndggeqFqKGS1SxwBG7Gfbdyd90qtTLARMgx2g/viewform" class="cta-button text-2xl py-6 px-12">
+                <i class="fas fa-rocket mr-3"></i>今すぐ申し込む
+            </a>
+        </div>
+    </section>
 </body>
 </html>
