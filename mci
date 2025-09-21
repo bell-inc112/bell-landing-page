@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【平日限定】待ち時間ゼロで入場！限定シールが必ずもらえる屋内パーク | ピュアキッズ</title>
+    <meta name="description" content="雨の日の救世主！仮会員登録で待ち時間ゼロ入場＋限定シール3種プレゼント。週末は混雑必至、今すぐ登録を。CVR8%以上を目指す攻めのLP">
+    
+    <!-- CDN読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- カスタムCSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pure-blue': '#40E0D0',
+                        'pure-pink': '#FF69B4',
+                        'pure-yellow': '#FFD700',
+                        'pure-green': '#98FB98'
+                    },
+                    fontFamily: {
+                        'mplus': ['M PLUS Rounded 1c', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-mplus bg-white">
+    <!-- 固定CTA -->
+    <div id="floating-cta" class="fixed bottom-0 left-0 right-0 z-50 bg-pure-blue shadow-2xl transform translate-y-0 transition-transform duration-300">
+        <button onclick="registerNow()" class="w-full py-4 px-6 text-white text-lg font-bold bg-gradient-to-r from-pure-blue to-blue-500 hover:from-blue-500 hover:to-pure-blue transition-all duration-300 shadow-lg">
+            <i class="fas fa-user-plus mr-2"></i>会員登録でスムーズ入場・シールプレゼント
+        </button>
+    </div>
+
+    <!-- ファーストビュー -->
+    <section id="hero" class="relative min-h-screen bg-gradient-to-br from-pure-blue via-blue-400 to-blue-600 overflow-hidden">
+        <!-- 背景装飾 -->
+        <div class="absolute inset-0">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-pure-yellow rounded-full opacity-70 animate-bounce"></div>
+            <div class="absolute top-32 right-20 w-16 h-16 bg-pure-pink rounded-full opacity-60 animate-pulse"></div>
+            <div class="absolute bottom-20 left-32 w-24 h-24 bg-pure-green rounded-full opacity-50 animate-bounce delay-1000"></div>
+        </div>
+
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center min-h-screen">
+                <!-- 左側：キャッチコピー -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
+                    <!-- 限定感バッジ -->
+                    <div class="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                        お得な特典つき！
+                    </div>
+                    
+                    <!-- メインキャッチコピー -->
+                    <h1 class="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                        <span class="text-pure-yellow">雨でも安心</span>して遊べる！<br>
+                        事前登録で<span class="text-pure-pink">待ち時間なし</span><br>
+                        <span class="bg-white text-pure-blue px-3 py-1 rounded-lg">可愛いシール</span>ももらえる<br>
+                        屋内パーク
+                    </h1>
+                    
+                    <!-- サブコピー -->
+                    <p class="text-xl lg:text-2xl text-blue-100 mb-8 font-bold">
+                        急な雨でもお出かけ先に困らない。週末は混雑するので事前登録がおすすめです
+                    </p>
+                    
+                    <!-- 混雑状況表示 -->
+                    <div class="bg-white bg-opacity-90 rounded-lg p-4 mb-8 border-l-4 border-orange-500">
+                        <div class="flex items-center justify-center text-center">
+                            <i class="fas fa-info-circle text-orange-500 mr-3 text-2xl"></i>
+                            <div>
+                                <p class="text-orange-600 font-bold text-lg">週末は混雑しやすいです</p>
+                                <p class="text-lg text-gray-700">
+                                    事前登録でスムーズに入場できます
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- メインCTAボタン -->
+                    <div class="space-y-4">
+                        <button onclick="registerNow()" class="w-full lg:w-auto bg-gradient-to-r from-pure-pink to-red-500 text-white text-xl lg:text-2xl font-black py-6 px-12 rounded-full shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-user-plus mr-3"></i>カンタン登録でスムーズ入場
+                        </button>
+                        <p class="text-blue-100 text-sm">※登録無料・当日OK・カンタン3ステップ</p>
+                    </div>
+                </div>
+                
+                <!-- 右側：ビジュアル -->
+                <div class="w-full lg:w-1/2 relative">
+                    <!-- メイン画像 -->
+                    <div class="relative">
+                        <img src="https://www.nikke-purekids.jp/wp/wp-content/uploads/2025/07/f84db44a550a03f5698e46bc09fc9153-scaled.jpg" alt="ピュアキッズで楽しく遊ぶ子どもたち" class="w-full h-auto rounded-2xl shadow-2xl">
+                        <div class="absolute top-4 right-4 bg-pure-yellow text-black px-3 py-2 rounded-full font-bold text-sm animate-bounce">
+                            <i class="fas fa-crown mr-1"></i>国内最大級！
+                        </div>
+                    </div>
+                    
+                    <!-- シール画像 -->
+                    <div class="absolute -bottom-8 -left-8 bg-white rounded-xl p-4 shadow-xl transform rotate-12 hover:rotate-0 transition-transform duration-300">
+                        <h3 class="text-pure-blue font-bold text-center mb-2">限定シール3種</h3>
+                        <div class="flex space-x-2">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-car text-white text-xl"></i>
+                            </div>
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-heart text-white text-xl"></i>
+                            </div>
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-star text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 text-center mt-2">5枚集めると特典！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 利用メリット（3つの理由） -->
+    <section id="benefits" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    ピュアキッズが選ばれる<span class="text-pure-blue">3つの理由</span>
+                </h2>
+                <p class="text-lg text-gray-600">親子で安心して楽しめる理由があります</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 理由1：全天候型 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-pure-blue">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-pure-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-cloud-rain text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">全天候型</h3>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        雨の日も猛暑日も関係なし！<br>
+                        いつでも快適な室内環境で<br>
+                        思いっきり遊べます
+                    </p>
+                </div>
+                
+                <!-- 理由2：安心・安全 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-pure-pink">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-pure-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">安心・安全</h3>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        年齢別エリア分け＋<br>
+                        徹底した衛生管理で<br>
+                        ママも安心してお任せ
+                    </p>
+                </div>
+                
+                <!-- 理由3：遊び放題 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-pure-green">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-pure-green rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-infinity text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">遊び放題</h3>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        延長料金ゼロ！<br>
+                        再入場もOKで<br>
+                        1日中楽しめる
+                    </p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <button onclick="registerNow()" class="bg-gradient-to-r from-pure-blue to-blue-500 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    今すぐ登録して安心の遊び場を確保する
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特典（シール訴求） -->
+    <section id="stickers" class="py-16 bg-gradient-to-br from-pure-yellow via-yellow-200 to-orange-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-5xl font-black text-gray-800 mb-4">
+                    <span class="text-pure-pink">会員登録</span>すると<br>
+                    <span class="text-pure-blue">可愛いシール</span>がもらえます！
+                </h2>
+                <p class="text-xl text-gray-600">来るたびに違うデザイン。お子さんが喜ぶコレクション</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 shadow-2xl">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <!-- 左側：シール説明 -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                                <i class="fas fa-heart text-pure-pink mr-3"></i>
+                                遊びに来るたびにプレゼント
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center bg-blue-50 p-4 rounded-lg">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-car text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-blue-800">男の子用シール</h4>
+                                        <p class="text-sm text-gray-600">車・電車・恐竜デザイン</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center bg-pink-50 p-4 rounded-lg">
+                                    <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-heart text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-pink-800">女の子用シール</h4>
+                                        <p class="text-sm text-gray-600">プリンセス・花・動物デザイン</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center bg-green-50 p-4 rounded-lg">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-star text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-green-800">保護者用シール</h4>
+                                        <p class="text-sm text-gray-600">家族・思い出・記念デザイン</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 裏面QR説明 -->
+                            <div class="mt-6 bg-gradient-to-r from-pure-blue to-blue-500 text-white p-4 rounded-lg">
+                                <h4 class="font-bold mb-2">
+                                    <i class="fas fa-mobile-alt mr-2"></i>
+                                    便利なLINE連携
+                                </h4>
+                                <p class="text-sm">お得な情報やイベントのご案内をお届けします</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 右側：コレクション要素 -->
+                        <div class="text-center">
+                            <div class="bg-gradient-to-br from-purple-400 to-pink-400 p-8 rounded-2xl text-white mb-6">
+                                <h3 class="text-3xl font-black mb-4">
+                                    <i class="fas fa-star mr-3"></i>
+                                    集めて楽しい
+                                </h3>
+                                <div class="text-6xl font-black mb-4">5枚</div>
+                                <p class="text-xl mb-4">集めると素敵なプレゼント</p>
+                                <div class="flex justify-center space-x-2">
+                                    <div class="w-8 h-8 bg-white bg-opacity-50 rounded-full"></div>
+                                    <div class="w-8 h-8 bg-white bg-opacity-50 rounded-full"></div>
+                                    <div class="w-8 h-8 bg-white bg-opacity-50 rounded-full"></div>
+                                    <div class="w-8 h-8 bg-white bg-opacity-50 rounded-full"></div>
+                                    <div class="w-8 h-8 bg-white bg-opacity-50 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                子どもが喜ぶ「集める楽しさ」<br>
+                                毎回違うデザインで通うのが楽しみに
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA -->
+                    <div class="text-center mt-8">
+                        <button onclick="registerNow()" class="bg-gradient-to-r from-pure-pink to-red-500 text-white text-xl font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-user-plus mr-3"></i>会員登録してシールをもらう
+                        </button>
+                        <p class="text-gray-500 text-sm mt-2">※シールは来場時にお渡しします（1日1枚）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育的価値（新設セクション） -->
+    <section id="educational" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    <span class="text-pure-green">遊びながら学べる</span>体験
+                </h2>
+                <p class="text-xl text-gray-600">ただ遊ぶだけではなく"学びの場"にもなる安心感</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 抗菌砂場 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border-2 border-yellow-200">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-search text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">抗菌砂場</h3>
+                        <p class="text-yellow-600 font-bold">発掘・探究心を育む</p>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        真っ白な抗菌砂で安心安全。<br>
+                        宝探しや化石発掘遊びで<br>
+                        子どもの好奇心を刺激します
+                    </p>
+                </div>
+                
+                <!-- ボールプール -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-running text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">ボールプール20万個</h3>
+                        <p class="text-blue-600 font-bold">運動能力を伸ばす</p>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        バランス感覚・体幹強化・<br>
+                        協調性を自然に身につける<br>
+                        楽しい全身運動
+                    </p>
+                </div>
+                
+                <!-- 年齢別エリア -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-200">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-child text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">年齢別エリア</h3>
+                        <p class="text-green-600 font-bold">成長段階に応じた遊び</p>
+                    </div>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        0歳〜12歳まで各年齢の<br>
+                        発達段階に最適な遊具で<br>
+                        適切な刺激を提供
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 親への安心メッセージ -->
+            <div class="mt-12 bg-gradient-to-r from-pure-blue to-blue-500 text-white p-8 rounded-2xl">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">
+                        <i class="fas fa-heart mr-3"></i>
+                        ママ・パパも安心の教育効果
+                    </h3>
+                    <p class="text-xl leading-relaxed">
+                        「今日は遊ばせただけ」ではなく「学びもあった」と思えることで、<br>
+                        罪悪感なく子どもとの時間を楽しめます
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 競合比較 -->
+    <section id="comparison" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    他の施設と<span class="text-pure-blue">比べてください</span>
+                </h2>
+                <p class="text-xl text-gray-600">圧倒的なコストパフォーマンスと利便性</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gradient-to-r from-pure-blue to-blue-500 text-white">
+                            <tr>
+                                <th class="py-4 px-6 text-left font-bold">項目</th>
+                                <th class="py-4 px-6 text-center font-bold">他施設</th>
+                                <th class="py-4 px-6 text-center font-bold bg-pure-pink">ピュアキッズ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-4 px-6 font-bold">料金システム</td>
+                                <td class="py-4 px-6 text-center text-red-600">
+                                    <i class="fas fa-times mr-2"></i>60分課金制
+                                </td>
+                                <td class="py-4 px-6 text-center text-green-600 bg-green-50">
+                                    <i class="fas fa-check mr-2"></i>1日遊び放題
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-4 px-6 font-bold">延長料金</td>
+                                <td class="py-4 px-6 text-center text-red-600">
+                                    <i class="fas fa-times mr-2"></i>30分毎に追加料金
+                                </td>
+                                <td class="py-4 px-6 text-center text-green-600 bg-green-50">
+                                    <i class="fas fa-check mr-2"></i>延長料金ゼロ
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-4 px-6 font-bold">再入場</td>
+                                <td class="py-4 px-6 text-center text-red-600">
+                                    <i class="fas fa-times mr-2"></i>繁忙期は制限あり
+                                </td>
+                                <td class="py-4 px-6 text-center text-green-600 bg-green-50">
+                                    <i class="fas fa-check mr-2"></i>いつでもOK
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-4 px-6 font-bold">待ち時間</td>
+                                <td class="py-4 px-6 text-center text-red-600">
+                                    <i class="fas fa-times mr-2"></i>入場時に行列
+                                </td>
+                                <td class="py-4 px-6 text-center text-green-600 bg-green-50">
+                                    <i class="fas fa-check mr-2"></i>事前登録で待ち時間ゼロ
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-bold">特典</td>
+                                <td class="py-4 px-6 text-center text-gray-500">
+                                    <i class="fas fa-minus mr-2"></i>特になし
+                                </td>
+                                <td class="py-4 px-6 text-center text-green-600 bg-green-50">
+                                    <i class="fas fa-gift mr-2"></i>限定シールプレゼント
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- CTA -->
+                <div class="bg-gradient-to-r from-pure-pink to-red-500 p-6 text-center">
+                    <button onclick="registerNow()" class="bg-white text-pure-pink text-xl font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        今すぐ登録して遊び放題を体験する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンテンツ紹介 -->
+    <section id="contents" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    どんな<span class="text-pure-blue">遊び</span>ができるの？
+                </h2>
+                <p class="text-xl text-gray-600">国内最大級の屋内パークで思いっきり遊ぼう</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- ボールプール20万個 -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <img src="https://www.cocoful.jp/wp/wp-content/uploads/2022/03/ponte01-scaled.jpg" alt="ボールプール20万個" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">ボールプール20万個</h3>
+                        <p class="text-sm text-gray-600">海のような巨大ボールプールで泳ぎ放題！滑り台やターザンロープも</p>
+                    </div>
+                </div>
+                
+                <!-- 抗菌砂場 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <img src="https://www.kidscorner-popnland.com/master/wp-content/uploads/2019/06/case_273_002.jpg" alt="抗菌砂場で発掘体験" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-2">抗菌砂場（発掘体験）</h3>
+                        <p class="text-sm text-gray-600">真っ白な抗菌砂で宝探し！化石発掘やお城作りで想像力を育成</p>
+                    </div>
+                </div>
+                
+                <!-- 大型トランポリン -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <img src="https://pecomag.jp/wp-content/uploads/2024/11/DSC00190-1320x880.jpg" alt="大型トランポリンふわふわ遊具" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">大型トランポリン</h3>
+                        <p class="text-sm text-gray-600">ふわふわ遊具で思いっきりジャンプ！体幹トレーニングにも効果的</p>
+                    </div>
+                </div>
+                
+                <!-- 季節限定イベント -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <img src="https://www.nikke-purekids.jp/wp/wp-content/uploads/2021/07/mainvisual_shop09_sp.jpg" alt="季節限定イベント" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-800 mb-2">季節限定イベント</h3>
+                        <p class="text-sm text-gray-600">毎月変わる楽しいイベント！工作教室やダンスタイムで特別な思い出</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UGC・SNS戦略 -->
+    <section id="ugc" class="py-16 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    実際に来場した<span class="text-pure-pink">親子の声</span>
+                </h2>
+                <p class="text-xl text-gray-600">みんなの笑顔があふれています</p>
+            </div>
+            
+            <!-- SNS投稿数表示 -->
+            <div class="text-center mb-8">
+                <div class="inline-block bg-white rounded-full px-8 py-4 shadow-lg">
+                    <p class="text-2xl font-bold text-gray-800">
+                        みんなの<span class="text-pure-blue">楽しい思い出</span>
+                        <span id="sns-count" class="text-3xl text-pure-pink">2,400</span>件以上の投稿
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- SNS投稿1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-red-400 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">ママ（32歳）</h4>
+                            <p class="text-sm text-gray-500">3歳の息子と来場</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "雨の日に本当に助かった！登録しておいたから並ばずに入れて、シールも可愛くて息子が大喜び。1日中遊べるのでコスパ最高です♪"
+                    </p>
+                    <div class="flex items-center text-pure-blue text-sm">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span class="mr-4">387いいね</span>
+                        <i class="fas fa-share mr-2"></i>
+                        <span>42シェア</span>
+                    </div>
+                </div>
+                
+                <!-- SNS投稿2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">パパ（29歳）</h4>
+                            <p class="text-sm text-gray-500">5歳の娘と来場</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "1日遊べてこの料金は安すぎる！娘が帰りたがらないほど夢中になってました。シール集めも楽しみの一つになってます🎵"
+                    </p>
+                    <div class="flex items-center text-pure-blue text-sm">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span class="mr-4">523いいね</span>
+                        <i class="fas fa-share mr-2"></i>
+                        <span>78シェア</span>
+                    </div>
+                </div>
+                
+                <!-- SNS投稿3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">ママ（26歳）</h4>
+                            <p class="text-sm text-gray-500">2歳双子と来場</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "双子連れでも安心して遊ばせられる！年齢別エリアがあるから小さい子も安全。シールコレクションが子どもたちの楽しみになってます♡"
+                    </p>
+                    <div class="flex items-center text-pure-blue text-sm">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span class="mr-4">694いいね</span>
+                        <i class="fas fa-share mr-2"></i>
+                        <span>156シェア</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SNSシェア促進 -->
+            <div class="mt-12 bg-gradient-to-r from-pure-blue to-purple-500 text-white p-8 rounded-2xl text-center">
+                <h3 class="text-2xl font-bold mb-4">
+                    <i class="fas fa-camera mr-3"></i>
+                    楽しい思い出をシェアしよう
+                </h3>
+                <p class="text-xl mb-6">
+                    <span class="text-pure-yellow">ピュアキッズでの写真</span>をSNSに投稿すると<br>
+                    素敵なプレゼントが当たるかも！
+                </p>
+                <button onclick="registerNow()" class="bg-white text-pure-blue text-lg font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    まずは会員登録から
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 利用の流れ -->
+    <section id="flow" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    ご利用は<span class="text-pure-blue">かんたん3ステップ</span>
+                </h2>
+                <p class="text-xl text-gray-600">スマホがあれば今すぐスタート</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- ステップ1 -->
+                    <div class="text-center relative">
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 bg-gradient-to-br from-pure-blue to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-lg">
+                                1
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">仮会員登録</h3>
+                            <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                                <i class="fas fa-mobile-alt text-pure-blue text-3xl mb-2"></i>
+                                <p class="text-gray-700">スマホで30秒<br>名前・連絡先のみ</p>
+                            </div>
+                        </div>
+                        <!-- 矢印（モバイルでは非表示） -->
+                        <div class="hidden md:block absolute top-10 -right-4 text-pure-blue text-2xl z-0">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- ステップ2 -->
+                    <div class="text-center relative">
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 bg-gradient-to-br from-pure-pink to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-lg">
+                                2
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">来場時にQR提示</h3>
+                            <div class="bg-pink-50 rounded-lg p-4 mb-4">
+                                <i class="fas fa-qrcode text-pure-pink text-3xl mb-2"></i>
+                                <p class="text-gray-700">待ち時間ゼロで入場<br>シールをプレゼント</p>
+                            </div>
+                        </div>
+                        <!-- 矢印（モバイルでは非表示） -->
+                        <div class="hidden md:block absolute top-10 -right-4 text-pure-pink text-2xl z-0">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- ステップ3 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pure-green to-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-lg">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">シールをゲット＆投稿</h3>
+                        <div class="bg-green-50 rounded-lg p-4 mb-4">
+                            <i class="fas fa-share-alt text-pure-green text-3xl mb-2"></i>
+                            <p class="text-gray-700">SNSに投稿して<br>特典交換やキャンペーン応募</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA -->
+                <div class="text-center mt-12">
+                    <button onclick="registerNow()" class="bg-gradient-to-r from-pure-blue to-purple-500 text-white text-xl font-bold py-6 px-12 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-user-plus mr-3"></i>会員登録をする
+                    </button>
+                    <p class="text-gray-500 text-sm mt-3">※登録は無料です</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    よくある<span class="text-pure-blue">質問</span>
+                </h2>
+                <p class="text-xl text-gray-600">気になる疑問にお答えします</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(1)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-gray-800">登録は本当に無料ですか？</h3>
+                            <i id="faq-icon-1" class="fas fa-chevron-down text-pure-blue transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-1" class="mt-4 text-gray-600 hidden">
+                            はい、仮会員登録は完全無料です。登録後の入場料のみで、追加料金は一切かかりません。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(2)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-gray-800">当日でも登録できますか？</h3>
+                            <i id="faq-icon-2" class="fas fa-chevron-down text-pure-blue transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-2" class="mt-4 text-gray-600 hidden">
+                            当日登録も可能ですが、事前登録がおすすめです。事前登録なら待ち時間ゼロで入場できます。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(3)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-gray-800">対象年齢は何歳ですか？</h3>
+                            <i id="faq-icon-3" class="fas fa-chevron-down text-pure-blue transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-3" class="mt-4 text-gray-600 hidden">
+                            0歳から12歳まで（小学6年生まで）のお子様が対象です。年齢別エリアもあるので安心です。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(4)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-gray-800">飲食はできますか？</h3>
+                            <i id="faq-icon-4" class="fas fa-chevron-down text-pure-blue transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-4" class="mt-4 text-gray-600 hidden">
+                            フードコートがあります。お持ち込みも可能（一部制限あり）。お子様向けメニューも豊富です。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アクセス・店舗情報 -->
+    <section id="access" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                    <span class="text-pure-blue">全国16店舗</span>で展開中
+                </h2>
+                <p class="text-xl text-gray-600">お近くの店舗を見つけてください</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">主要店舗</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">イオンモール名取店</h4>
+                            <p class="text-sm text-gray-600">宮城県名取市</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">コトエ流山おおたかの森店</h4>
+                            <p class="text-sm text-gray-600">千葉県流山市</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">市川コルトンプラザ店</h4>
+                            <p class="text-sm text-gray-600">千葉県市川市</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">入間サイオス店</h4>
+                            <p class="text-sm text-gray-600">埼玉県入間市</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">広島アルパーク店</h4>
+                            <p class="text-sm text-gray-600">広島県広島市</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md">
+                            <h4 class="font-bold text-pure-blue mb-2">神戸ハーバーランドumie店</h4>
+                            <p class="text-sm text-gray-600">兵庫県神戸市</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <a href="https://www.nikke-purekids.jp/shop/" target="_blank" class="text-pure-blue font-bold hover:underline">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            全店舗リストを見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- クロージング -->
+    <section id="closing" class="py-20 bg-gradient-to-br from-pure-blue via-purple-400 to-pink-400">
+        <div class="container mx-auto px-4">
+            <div class="text-center text-white">
+                <h2 class="text-4xl lg:text-6xl font-black mb-8 leading-tight">
+                    親子の休日をもっと<span class="text-pure-yellow">ラク</span>に、<br>
+                    もっと<span class="text-pure-green">楽しく</span>。<br>
+                    <span class="text-white bg-red-500 px-4 py-2 rounded-lg">お得な特典つき</span>
+                </h2>
+                
+                <p class="text-xl lg:text-2xl mb-12 text-blue-100">
+                    雨でも暑い日でも、いつでも安心して遊べる場所がここにあります
+                </p>
+                
+                <!-- ファイナルCTA -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-white bg-opacity-10 rounded-2xl p-8 mb-8">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="bg-orange-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                                週末は混雑します。事前登録がおすすめ
+                            </div>
+                        </div>
+                        
+                        <button onclick="registerNow()" class="w-full bg-gradient-to-r from-pure-yellow to-orange-400 text-gray-800 text-2xl lg:text-3xl font-black py-8 px-8 rounded-2xl shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-300 mb-4">
+                            <i class="fas fa-user-plus mr-4"></i>
+                            カンタン会員登録でお得に遊ぶ
+                        </button>
+                        
+                        <p class="text-blue-100 text-sm">
+                            ※登録無料・SSL暗号化通信・プライバシー保護
+                        </p>
+                    </div>
+                    
+                    <!-- 信頼要素 -->
+                    <div class="flex items-center justify-center space-x-8 text-blue-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-lock mr-2"></i>
+                            <span class="text-sm">SSL暗号化</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt mr-2"></i>
+                            <span class="text-sm">プライバシー保護</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-award mr-2"></i>
+                            <span class="text-sm">全国16店舗</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会員登録フォーム（モーダル） -->
+    <div id="registration-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">仮会員登録</h3>
+                <p class="text-gray-600">30秒で完了・完全無料</p>
+            </div>
+            
+            <form id="registration-form" onsubmit="submitForm(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">お名前（保護者様）*</label>
+                        <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-blue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">メールアドレス*</label>
+                        <input type="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-blue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">お子様の年齢*</label>
+                        <select required class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-blue focus:outline-none">
+                            <option value="">選択してください</option>
+                            <option value="0">0歳</option>
+                            <option value="1">1歳</option>
+                            <option value="2">2歳</option>
+                            <option value="3">3歳</option>
+                            <option value="4">4歳</option>
+                            <option value="5">5歳</option>
+                            <option value="6">6歳</option>
+                            <option value="7">7歳以上</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full mt-6 bg-gradient-to-r from-pure-blue to-blue-500 text-white font-bold py-4 px-6 rounded-lg hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-check mr-2"></i>
+                    登録完了してシールをゲット
+                </button>
+            </form>
+            
+            <p class="text-xs text-gray-500 text-center mt-4">
+                登録により<a href="#" class="text-pure-blue hover:underline">利用規約</a>・<a href="#" class="text-pure-blue hover:underline">プライバシーポリシー</a>に同意したものとみなします
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="js/main.js"></script>
+</body>
+</html>
