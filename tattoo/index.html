@@ -1,347 +1,1269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Tattoo Consultation - Get Your Tattoo Meaning Right | Expert Native Japanese Consultation</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>ピュアハートキッズランド | 待ち時間ゼロで入場！限定シールプレゼント</title>
+    <meta name="description" content="雨の日も安心！国内最大級の屋内パーク。仮会員登録で待ち時間ゼロ＋限定シール必ずプレゼント！">
+    <meta name="keywords" content="ピュアキッズ,屋内遊園地,子供,遊び場,雨の日,シール,時短">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'rounded': ['M PLUS Rounded 1c', 'sans-serif'],
+                    },
+                    colors: {
+                        'pure-blue': '#4DD0E1',
+                        'pure-pink': '#FF69B4',
+                        'pure-yellow': '#FFD700',
+                        'pure-orange': '#FF8C00'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
-        .japanese-accent { background: linear-gradient(45deg, #ff6b6b, #ffd93d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-card { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .cta-button { background: linear-gradient(45deg, #ff6b6b, #ffd93d); transition: all 0.3s ease; }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); }
-        .floating-animation { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4DD0E1 0%, #26C6DA 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #FF69B4, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bounce-gentle {
+            animation: bounce-gentle 2s infinite;
+        }
+        
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(77, 208, 225, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(77, 208, 225, 0.8); }
+        }
+        
+        .fixed-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, #FF69B4, #FF8C00);
+            backdrop-filter: blur(10px);
+        }
+        
+        .sticker-shadow {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        /* PDF印刷用スタイル */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .fixed-cta {
+                position: static !important;
+                background: #FF69B4 !important;
+            }
+            body {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+        
+        .print-section {
+            page-break-inside: avoid;
+        }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
 
-    <!-- Hero Section -->
-    <section class="gradient-bg min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden">
+<body class="font-rounded bg-gray-50">
+    <!-- PDF保存ボタン -->
+    <div class="no-print fixed top-4 right-4 z-50">
+        <button id="pdfSaveBtn" class="bg-red-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-red-600 transition-all duration-300 flex items-center gap-2">
+            <i class="fas fa-download"></i>
+            <span>PDF保存</span>
+        </button>
+    </div>
+
+    <!-- ファーストビュー -->
+    <section class="gradient-bg min-h-screen flex items-center relative overflow-hidden print-section">
+        <!-- 背景装飾 -->
         <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-10 text-8xl opacity-20">漢</div>
-            <div class="absolute top-40 right-20 text-6xl opacity-15">字</div>
-            <div class="absolute bottom-20 left-20 text-7xl opacity-10">美</div>
-            <div class="absolute bottom-40 right-10 text-9xl opacity-5">和</div>
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full bounce-gentle"></div>
+            <div class="absolute top-32 right-20 w-16 h-16 bg-pure-pink rounded-full bounce-gentle" style="animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-20 left-32 w-24 h-24 bg-pure-yellow rounded-full bounce-gentle" style="animation-delay: 1s;"></div>
         </div>
-        
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <div class="floating-animation mb-8">
-                <i class="fas fa-exclamation-triangle text-yellow-400 text-6xl mb-6"></i>
-            </div>
-            
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight">
-                Want a Japanese Tattoo?<br>
-                <span class="japanese-accent">Let Us Help You</span><br>
-                <span class="text-white">Get It RIGHT</span>
-            </h1>
-            
-            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
-                Don't become another embarrassing tattoo fail story.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div class="stat-card rounded-2xl p-6 text-center">
-                    <div class="text-4xl font-bold text-red-400 mb-2">25%</div>
-                    <div class="text-sm text-gray-300">of Americans regret their tattoos</div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <!-- メインコピー -->
+                <div class="text-center lg:text-left">
+                    <!-- 限定感演出 -->
+                    <div class="inline-block bg-red-500 text-white px-6 py-2 rounded-full mb-4 pulse-glow">
+                        <i class="fas fa-clock mr-2"></i>
+                        残り <span id="remainingSlots" class="font-bold text-xl">47</span> 名様限定！
+                    </div>
+
+                    <h1 class="text-4xl lg:text-6xl font-black text-white mb-4 leading-tight">
+                        <span class="text-gradient">待ち時間ゼロ</span>で入場！<br>
+                        <span class="text-pure-yellow">今だけ限定シール</span>が<br>
+                        <span class="text-white">必ずもらえる屋内パーク</span>
+                    </h1>
+
+                    <p class="text-xl lg:text-2xl text-white mb-8 font-medium">
+                        雨の日の救世主。週末は混雑必至、今すぐ登録を
+                    </p>
+
+                    <!-- CTAボタン -->
+                    <button class="cta-btn bg-gradient-to-r from-pure-pink to-pure-orange text-white text-xl lg:text-2xl font-bold px-8 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 pulse-glow">
+                        <i class="fas fa-gift mr-3"></i>
+                        30秒で登録完了 → 今すぐシールをゲット
+                    </button>
+
+                    <!-- SNS投稿数表示 -->
+                    <div class="mt-6 flex items-center justify-center lg:justify-start gap-4 text-white">
+                        <i class="fab fa-instagram text-2xl"></i>
+                        <span class="text-lg">#ピュアキッズシール 投稿 <span id="snsCount" class="font-bold text-pure-yellow">2,431</span>件突破！</span>
+                    </div>
                 </div>
-                <div class="stat-card rounded-2xl p-6 text-center">
-                    <div class="text-4xl font-bold text-red-400 mb-2">63%</div>
-                    <div class="text-sm text-gray-300">regret small text tattoos</div>
+
+                <!-- メインビジュアル -->
+                <div class="relative">
+                    <!-- 子どもの笑顔画像 -->
+                    <div class="bg-white rounded-3xl p-6 shadow-2xl">
+                        <img src="https://www.nikke-purekids.jp/wp/wp-content/uploads/2021/07/mainvisual_shop04_sp.jpg" 
+                             alt="ピュアキッズで遊ぶ子どもたち" 
+                             class="w-full h-80 object-cover rounded-2xl">
+                    </div>
+                    
+                    <!-- シールステッカー -->
+                    <div class="absolute -top-4 -right-4 flex gap-2">
+                        <div class="bg-gradient-to-br from-blue-400 to-blue-600 text-white p-4 rounded-2xl sticker-shadow bounce-gentle">
+                            <div class="text-center">
+                                <i class="fas fa-rocket text-3xl mb-2"></i>
+                                <div class="text-xs font-bold">男の子用</div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-pink-400 to-pink-600 text-white p-4 rounded-2xl sticker-shadow bounce-gentle" style="animation-delay: 0.3s;">
+                            <div class="text-center">
+                                <i class="fas fa-heart text-3xl mb-2"></i>
+                                <div class="text-xs font-bold">女の子用</div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-400 to-green-600 text-white p-4 rounded-2xl sticker-shadow bounce-gentle" style="animation-delay: 0.6s;">
+                            <div class="text-center">
+                                <i class="fas fa-star text-3xl mb-2"></i>
+                                <div class="text-xs font-bold">保護者用</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <button class="cta-button text-black font-bold text-xl px-8 py-4 rounded-full mb-4 inline-flex items-center">
-                <i class="fab fa-instagram mr-3"></i>
-                Get FREE Expert Check via Instagram DM
-            </button>
-            
-            <p class="text-sm text-gray-400">✅ Native Japanese Expert • ✅ Instant Response • ✅ 100% Free</p>
+
+            <!-- 混雑状況表示 -->
+            <div class="mt-12 bg-white/90 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <h3 class="text-lg font-bold mb-4">リアルタイム混雑状況</h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span>本日午前</span>
+                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full font-bold">混雑</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>本日午後</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full font-bold">空きあり</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section class="py-16 px-4 bg-gray-900">
-        <div class="max-w-6xl mx-auto">
+    <!-- 利用メリット -->
+    <section class="py-16 bg-white print-section">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">
-                    <span class="text-red-400">The Shocking Truth</span><br>
-                    About Foreign Tattoos in Japan
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">ピュアキッズが選ばれる</span><br>
+                    <span class="text-gray-800">3つの理由</span>
                 </h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="bg-red-900 bg-opacity-30 border border-red-500 rounded-2xl p-8 text-center">
-                    <div class="text-6xl font-bold text-red-400 mb-4">60%</div>
-                    <div class="text-lg font-semibold mb-3">Foreign Kanji Tattoos</div>
-                    <div class="text-gray-300">Have completely wrong meanings</div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-cloud-rain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-700">全天候型</h3>
+                    <p class="text-gray-700">雨の日も快適。天気を気にせず一日中遊べる安心の屋内施設</p>
                 </div>
-                
-                <div class="bg-yellow-900 bg-opacity-30 border border-yellow-500 rounded-2xl p-8 text-center">
-                    <div class="text-6xl font-bold text-yellow-400 mb-4">98%</div>
-                    <div class="text-lg font-semibold mb-3">Japanese People</div>
-                    <div class="text-gray-300">Don't have tattoos - we know what we're doing</div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-green-700">安心・安全</h3>
+                    <p class="text-gray-700">年齢別エリア分け＋徹底した衛生管理で、安心してお子様を遊ばせられます</p>
                 </div>
-                
-                <div class="bg-purple-900 bg-opacity-30 border border-purple-500 rounded-2xl p-8 text-center">
-                    <div class="text-6xl font-bold text-purple-400 mb-4">1000s</div>
-                    <div class="text-lg font-semibold mb-3">Tourists Every Year</div>
-                    <div class="text-gray-300">Get embarrassing tattoo fails</div>
-                </div>
-            </div>
-            
-            <div class="bg-gray-800 rounded-2xl p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-6 text-center">
-                    <i class="fas fa-laugh-cry text-yellow-400 mr-3"></i>
-                    Real Examples We've Seen:
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="flex items-center">
-                        <div class="text-4xl mr-4">🚽</div>
-                        <div>
-                            <div class="font-bold text-red-400">"Toilet Paper"</div>
-                            <div class="text-gray-400">They thought it meant "strength"</div>
-                        </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-infinity text-white text-2xl"></i>
                     </div>
-                    <div class="flex items-center">
-                        <div class="text-4xl mr-4">🍜</div>
-                        <div>
-                            <div class="font-bold text-red-400">"Beef Soup"</div>
-                            <div class="text-gray-400">They wanted "warrior spirit"</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="text-4xl mr-4">🗑️</div>
-                        <div>
-                            <div class="font-bold text-red-400">"Garbage"</div>
-                            <div class="text-gray-400">They thought it meant "beautiful"</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="text-4xl mr-4">🥩</div>
-                        <div>
-                            <div class="font-bold text-red-400">"Meatball"</div>
-                            <div class="text-gray-400">They wanted "inner peace"</div>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-purple-700">遊び放題</h3>
+                    <p class="text-gray-700">延長ゼロ・再入場OK。時間を気にせず思いっきり遊べます</p>
                 </div>
             </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <button class="cta-btn bg-gradient-to-r from-pure-pink to-pure-orange text-white text-lg font-bold px-8 py-4 rounded-full shadow-xl hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-gift mr-2"></i>
+                    今すぐ無料登録してメリットを体験
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特典（シール訴求） -->
+    <section class="py-16 bg-gradient-to-br from-pink-50 to-yellow-50 print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">仮会員登録で</span><br>
+                    <span class="text-gray-800">限定シールをプレゼント！</span>
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- シール画像 -->
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl">
+                        <div class="grid grid-cols-3 gap-6">
+                            <!-- 男の子用シール -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center sticker-shadow">
+                                    <i class="fas fa-rocket text-white text-3xl"></i>
+                                </div>
+                                <p class="text-sm font-bold text-blue-600">男の子用</p>
+                                <p class="text-xs text-gray-600">宇宙・乗り物</p>
+                            </div>
+                            
+                            <!-- 女の子用シール -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center sticker-shadow">
+                                    <i class="fas fa-heart text-white text-3xl"></i>
+                                </div>
+                                <p class="text-sm font-bold text-pink-600">女の子用</p>
+                                <p class="text-xs text-gray-600">プリンセス・花</p>
+                            </div>
+                            
+                            <!-- 保護者用シール -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center sticker-shadow">
+                                    <i class="fas fa-star text-white text-3xl"></i>
+                                </div>
+                                <p class="text-sm font-bold text-green-600">保護者用</p>
+                                <p class="text-xs text-gray-600">感謝・応援</p>
+                            </div>
+                        </div>
+                        
+                        <!-- QRコード説明 -->
+                        <div class="mt-8 bg-gray-50 p-6 rounded-2xl text-center">
+                            <i class="fas fa-qrcode text-3xl text-gray-600 mb-4"></i>
+                            <p class="text-sm text-gray-700">裏面QRでLINE追加→更なる特典も！</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 吹き出し -->
+                    <div class="absolute -top-4 -right-4 bg-red-500 text-white p-4 rounded-2xl shadow-xl pulse-glow">
+                        <p class="text-sm font-bold">5枚集めると<br>特別プレゼント！</p>
+                    </div>
+                </div>
+
+                <!-- 訴求コピー -->
+                <div>
+                    <div class="bg-white p-8 rounded-3xl shadow-xl">
+                        <h3 class="text-2xl font-black mb-6 text-center">
+                            <span class="text-gradient">集めるたびに楽しい！</span><br>
+                            思い出が形に残るシール
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-pure-pink rounded-full flex items-center justify-center">
+                                    <i class="fas fa-gift text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">来場のたびに新しいシール</h4>
+                                    <p class="text-sm text-gray-600">毎回違うデザインで飽きない</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-pure-blue rounded-full flex items-center justify-center">
+                                    <i class="fas fa-camera text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">SNS映えで思い出づくり</h4>
+                                    <p class="text-sm text-gray-600">シール投稿で抽選キャンペーンも</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-pure-yellow rounded-full flex items-center justify-center">
+                                    <i class="fas fa-trophy text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">5枚コンプリートで特典</h4>
+                                    <p class="text-sm text-gray-600">次回来場時に使える特別クーポン</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA -->
+                        <button class="cta-btn w-full mt-8 bg-gradient-to-r from-pure-pink to-pure-orange text-white font-bold py-4 rounded-full shadow-xl hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-gift mr-2"></i>
+                            今すぐ登録してシールをゲット
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育的価値 -->
+    <section class="py-16 bg-white print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">遊びながら学べる体験</span>
+                </h2>
+                <p class="text-xl text-gray-600">ただ遊ぶだけではなく"学びの場"にもなる安心感</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 抗菌砂場 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-3xl hover:scale-105 transition-all duration-300">
+                    <div class="text-center">
+                        <img src="https://fantasyresort.jp/kohoku/wp-content/uploads/sites/10/2021/06/sandbox_img_03.jpg" 
+                             alt="抗菌砂場" 
+                             class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="text-xl font-bold mb-4 text-orange-700">
+                            <i class="fas fa-search mr-2"></i>
+                            抗菌砂場
+                        </h3>
+                        <p class="text-gray-700">発掘・探究心を育む。真っ白な抗菌砂で安心して遊べます</p>
+                        <div class="mt-4 bg-white p-4 rounded-lg">
+                            <p class="text-sm font-semibold text-orange-600">🎯 学習効果：探究心・集中力・手先の器用さ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ボールプール -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-3xl hover:scale-105 transition-all duration-300">
+                    <div class="text-center">
+                        <img src="https://www.cocoful.jp/wp/wp-content/uploads/2022/03/ponte01-scaled.jpg" 
+                             alt="ボールプール" 
+                             class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="text-xl font-bold mb-4 text-blue-700">
+                            <i class="fas fa-swimming-pool mr-2"></i>
+                            ボールプール20万個
+                        </h3>
+                        <p class="text-gray-700">運動能力を伸ばす。全身運動で体幹とバランス感覚を鍛えます</p>
+                        <div class="mt-4 bg-white p-4 rounded-lg">
+                            <p class="text-sm font-semibold text-blue-600">🎯 学習効果：運動能力・バランス感覚・協調性</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 年齢別エリア -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl hover:scale-105 transition-all duration-300">
+                    <div class="text-center">
+                        <img src="https://kawachibi.com/wp-content/uploads/2021/04/purekids12.jpg" 
+                             alt="年齢別エリア" 
+                             class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="text-xl font-bold mb-4 text-green-700">
+                            <i class="fas fa-users mr-2"></i>
+                            年齢別エリア
+                        </h3>
+                        <p class="text-gray-700">成長段階に応じた遊びを提供。安全で適切な発達支援</p>
+                        <div class="mt-4 bg-white p-4 rounded-lg">
+                            <p class="text-sm font-semibold text-green-600">🎯 学習効果：社会性・コミュニケーション・自立心</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 親への訴求 -->
+            <div class="mt-12 bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-3xl">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-6">
+                        <span class="text-gradient">お母さんも安心！</span>
+                        <span class="text-gray-800">罪悪感ゼロで遊ばせられる理由</span>
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="bg-white p-6 rounded-2xl">
+                            <h4 class="font-bold text-purple-700 mb-3">
+                                <i class="fas fa-heart mr-2"></i>
+                                遊びが学びになる
+                            </h4>
+                            <p class="text-gray-700">「ただ遊んでいるだけ」ではなく、運動能力・社会性・探究心など様々な能力を自然に伸ばせます</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl">
+                            <h4 class="font-bold text-pink-700 mb-3">
+                                <i class="fas fa-graduation-cap mr-2"></i>
+                                発達段階に最適
+                            </h4>
+                            <p class="text-gray-700">0歳から12歳まで、それぞれの成長に合わせたエリア設計で、無理なく楽しく成長をサポート</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 競合比較 -->
+    <section class="py-16 bg-gray-50 print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">他の施設と比べてください</span>
+                </h2>
+                <p class="text-xl text-gray-600">圧倒的なコストパフォーマンスと利便性</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-pure-blue to-pure-pink text-white">
+                                <th class="py-6 px-4 text-left font-bold">比較項目</th>
+                                <th class="py-6 px-4 text-center font-bold">一般的な施設</th>
+                                <th class="py-6 px-4 text-center font-bold bg-pure-yellow text-gray-800">
+                                    <i class="fas fa-crown mr-2"></i>
+                                    ピュアキッズ
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-6 px-4 font-semibold">
+                                    <i class="fas fa-clock mr-2 text-pure-pink"></i>
+                                    利用時間
+                                </td>
+                                <td class="py-6 px-4 text-center text-gray-600">60分・90分制</td>
+                                <td class="py-6 px-4 text-center font-bold text-green-600 bg-green-50">
+                                    <i class="fas fa-infinity mr-2"></i>
+                                    1日遊び放題
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-6 px-4 font-semibold">
+                                    <i class="fas fa-yen-sign mr-2 text-pure-pink"></i>
+                                    延長料金
+                                </td>
+                                <td class="py-6 px-4 text-center text-gray-600">30分毎に追加料金</td>
+                                <td class="py-6 px-4 text-center font-bold text-green-600 bg-green-50">
+                                    <i class="fas fa-gift mr-2"></i>
+                                    延長料金ゼロ
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-6 px-4 font-semibold">
+                                    <i class="fas fa-door-open mr-2 text-pure-pink"></i>
+                                    再入場
+                                </td>
+                                <td class="py-6 px-4 text-center text-gray-600">再入場不可</td>
+                                <td class="py-6 px-4 text-center font-bold text-green-600 bg-green-50">
+                                    <i class="fas fa-check mr-2"></i>
+                                    再入場OK
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-6 px-4 font-semibold">
+                                    <i class="fas fa-calendar mr-2 text-pure-pink"></i>
+                                    繁忙期制限
+                                </td>
+                                <td class="py-6 px-4 text-center text-gray-600">1Dayプラン利用不可</td>
+                                <td class="py-6 px-4 text-center font-bold text-green-600 bg-green-50">
+                                    <i class="fas fa-calendar-check mr-2"></i>
+                                    いつでも利用可能
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-6 px-4 font-semibold">
+                                    <i class="fas fa-users mr-2 text-pure-pink"></i>
+                                    入場手続き
+                                </td>
+                                <td class="py-6 px-4 text-center text-gray-600">毎回手続き・待ち時間あり</td>
+                                <td class="py-6 px-4 text-center font-bold text-green-600 bg-green-50">
+                                    <i class="fas fa-qrcode mr-2"></i>
+                                    QR提示で待ち時間ゼロ
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <button class="cta-btn bg-gradient-to-r from-pure-pink to-pure-orange text-white text-xl font-bold px-8 py-4 rounded-full shadow-xl hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-play mr-2"></i>
+                    今すぐ登録して遊び放題を体験
+                </button>
+                <p class="mt-4 text-gray-600">※会員登録は無料です</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンテンツ紹介 -->
+    <section class="py-16 bg-white print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">どんな遊びができるの？</span>
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- ボールプール -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-3xl">
+                    <div class="flex items-center gap-6">
+                        <img src="https://d19x79yp3qax09.cloudfront.net/uploads/product_image/image/8084/1.jpg" 
+                             alt="ボールプール20万個" 
+                             class="w-32 h-32 object-cover rounded-2xl">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-blue-700">
+                                <i class="fas fa-swimming-pool mr-2"></i>
+                                ボールプール20万個
+                            </h3>
+                            <p class="text-gray-700">海のような広大なボールプール。飛行船遊具やスプラッシュボール、ターザンロープで冒険気分！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 抗菌砂場 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-3xl">
+                    <div class="flex items-center gap-6">
+                        <img src="https://www.kidscorner-popnland.com/master/wp-content/uploads/2019/06/case_273_002.jpg" 
+                             alt="抗菌砂場" 
+                             class="w-32 h-32 object-cover rounded-2xl">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-orange-700">
+                                <i class="fas fa-search mr-2"></i>
+                                抗菌砂場（発掘体験）
+                            </h3>
+                            <p class="text-gray-700">真っ白なサラサラ砂で安心。宝探しや発掘体験で探究心を育みます</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- トランポリン -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-3xl">
+                    <div class="flex items-center gap-6">
+                        <img src="https://pecomag.jp/wp-content/uploads/2024/11/DSC00190-1320x880.jpg" 
+                             alt="大型トランポリン" 
+                             class="w-32 h-32 object-cover rounded-2xl">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-purple-700">
+                                <i class="fas fa-rocket mr-2"></i>
+                                大型トランポリン・ふわふわ遊具
+                            </h3>
+                            <p class="text-gray-700">ぴょんぴょん跳んで体幹トレーニング！滑り台付きで楽しさ倍増</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 季節イベント -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl">
+                    <div class="flex items-center gap-6">
+                        <img src="https://www.tahiroblog.com/wp-content/uploads/2025/02/IMG_20250216_120236.jpg" 
+                             alt="季節イベント" 
+                             class="w-32 h-32 object-cover rounded-2xl">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-green-700">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                季節限定イベント
+                            </h3>
+                            <p class="text-gray-700">ダンス教室・工作・読み聞かせなど毎日開催。飽きることなく通えます</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UGC・SNS戦略 -->
+    <section class="py-16 bg-gradient-to-br from-pink-50 to-purple-50 print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">実際に来場した親子の声</span>
+                </h2>
+                <div class="flex justify-center items-center gap-4 mb-8">
+                    <i class="fab fa-instagram text-3xl text-pink-500"></i>
+                    <span class="text-xl font-bold">#ピュアキッズシール 投稿 <span class="text-pure-pink">2,431</span>件突破！</span>
+                    <i class="fab fa-twitter text-3xl text-blue-400"></i>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 口コミ1 -->
+                <div class="bg-white p-6 rounded-3xl shadow-lg hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">さくらママ</h4>
+                            <p class="text-sm text-gray-600">4歳女の子のママ</p>
+                        </div>
+                        <i class="fab fa-instagram text-pink-500 text-xl ml-auto"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"雨の日に急に予定が空いても、ピュアキッズがあるから安心！シールも可愛くて娘が大喜び💕 #雨の日の救世主"</p>
+                    <div class="flex items-center text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                </div>
+
+                <!-- 口コミ2 -->
+                <div class="bg-white p-6 rounded-3xl shadow-lg hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">たかしパパ</h4>
+                            <p class="text-sm text-gray-600">3歳男の子のパパ</p>
+                        </div>
+                        <i class="fab fa-twitter text-blue-400 text-xl ml-auto"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"1日遊べてこの料金は本当にコスパ最高！息子も『また行きたい』って毎日言ってる😊 #ピュアキッズシール"</p>
+                    <div class="flex items-center text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                </div>
+
+                <!-- 口コミ3 -->
+                <div class="bg-white p-6 rounded-3xl shadow-lg hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">みどりママ</h4>
+                            <p class="text-sm text-gray-600">2歳・5歳のママ</p>
+                        </div>
+                        <i class="fab fa-instagram text-pink-500 text-xl ml-auto"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"年齢別エリアがあるから、2歳と5歳の子を同時に遊ばせられて本当に助かる！子どもが帰りたがらない😅"</p>
+                    <div class="flex items-center text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SNSキャンペーン -->
+            <div class="mt-12 bg-white p-8 rounded-3xl shadow-xl">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-6">
+                        <i class="fab fa-instagram mr-2 text-pink-500"></i>
+                        <span class="text-gradient">SNS投稿キャンペーン開催中！</span>
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-r from-pink-100 to-purple-100 p-6 rounded-2xl">
+                            <h4 class="font-bold text-lg mb-4">
+                                <i class="fas fa-camera mr-2"></i>
+                                シール投稿で抽選参加
+                            </h4>
+                            <p class="text-gray-700 mb-4">#ピュアキッズシール をつけて投稿すると、月1名様に年間パスをプレゼント！</p>
+                            <div class="text-sm text-gray-600">
+                                <p>📸 Instagram・Twitter・TikTok対応</p>
+                                <p>🎁 毎月1名様に年間パス（¥50,000相当）</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-100 to-cyan-100 p-6 rounded-2xl">
+                            <h4 class="font-bold text-lg mb-4">
+                                <i class="fas fa-users mr-2"></i>
+                                ママ友紹介特典
+                            </h4>
+                            <p class="text-gray-700 mb-4">お友達を紹介すると、紹介者・被紹介者ともに特別シールプレゼント！</p>
+                            <div class="text-sm text-gray-600">
+                                <p>👥 お互いに限定デザインシール</p>
+                                <p>🎊 3名紹介で次回入場料無料</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 利用の流れ -->
+    <section class="py-16 bg-white print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">かんたん3ステップ</span>
+                </h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- ステップ1 -->
+                    <div class="text-center relative">
+                        <div class="w-20 h-20 bg-gradient-to-r from-pure-blue to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-xl">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">仮会員登録</h3>
+                        <p class="text-gray-700 mb-4">スマホから30秒で簡単登録。無料で今すぐ完了できます</p>
+                        <div class="bg-blue-50 p-4 rounded-2xl">
+                            <i class="fas fa-mobile-alt text-blue-500 text-3xl mb-2"></i>
+                            <p class="text-sm text-blue-700 font-semibold">スマホ30秒で完了</p>
+                        </div>
+                        
+                        <!-- 矢印 -->
+                        <div class="hidden md:block absolute top-10 -right-4 text-pure-pink text-3xl">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- ステップ2 -->
+                    <div class="text-center relative">
+                        <div class="w-20 h-20 bg-gradient-to-r from-pure-pink to-pure-orange rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-xl">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">来場時にQR提示</h3>
+                        <p class="text-gray-700 mb-4">受付でQRコードを見せるだけ。待ち時間ゼロでスムーズ入場</p>
+                        <div class="bg-pink-50 p-4 rounded-2xl">
+                            <i class="fas fa-qrcode text-pink-500 text-3xl mb-2"></i>
+                            <p class="text-sm text-pink-700 font-semibold">待ち時間ゼロ</p>
+                        </div>
+                        
+                        <!-- 矢印 -->
+                        <div class="hidden md:block absolute top-10 -right-4 text-pure-pink text-3xl">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- ステップ3 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-pure-yellow to-orange-400 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-xl">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">シールをゲット</h3>
+                        <p class="text-gray-700 mb-4">限定シールを受け取って、SNSに投稿。集めて特典をもらおう</p>
+                        <div class="bg-yellow-50 p-4 rounded-2xl">
+                            <i class="fas fa-gift text-yellow-600 text-3xl mb-2"></i>
+                            <p class="text-sm text-yellow-700 font-semibold">限定シール確実ゲット</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center mt-12">
+                    <button class="cta-btn bg-gradient-to-r from-pure-pink to-pure-orange text-white text-xl font-bold px-12 py-6 rounded-full shadow-2xl hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-rocket mr-3"></i>
+                        今すぐ30秒で登録開始
+                    </button>
+                    <p class="mt-4 text-gray-600">※登録は完全無料です</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-gray-50 print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">よくある質問</span>
+                </h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="faq-button w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <span class="font-bold text-lg">登録は本当に無料ですか？</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 pt-0 border-t">
+                        <p class="text-gray-700">はい、仮会員登録は完全無料です。登録費用や年会費は一切かかりません。</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="faq-button w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <span class="font-bold text-lg">当日でも登録できますか？</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 pt-0 border-t">
+                        <p class="text-gray-700">可能ですが、事前登録がおすすめです。当日登録は混雑時にお待ちいただく場合があります。</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="faq-button w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <span class="font-bold text-lg">対象年齢はありますか？</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 pt-0 border-t">
+                        <p class="text-gray-700">0歳から12歳（小学6年生）まで対象です。年齢別エリアで安心して遊べます。</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="faq-button w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <span class="font-bold text-lg">食事はできますか？</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 pt-0 border-t">
+                        <p class="text-gray-700">フードコートがあります。離乳食・アレルギー対応食品の持参も可能です（スタッフまでお声かけください）。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アクセス・店舗情報 -->
+    <section class="py-16 bg-white print-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black mb-4">
+                    <span class="text-gradient">全国16店舗で展開中</span>
+                </h2>
+                <p class="text-xl text-gray-600">お近くのピュアキッズを見つけよう</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- 店舗リスト -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">主要店舗一覧</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-2xl">
+                            <h4 class="font-bold text-lg mb-2 text-blue-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                関東エリア
+                            </h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                                <div>• ポンテポルタ千住</div>
+                                <div>• 市川コルトンプラザ</div>
+                                <div>• コトエ流山おおたかの森</div>
+                                <div>• 入間サイオス</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-6 rounded-2xl">
+                            <h4 class="font-bold text-lg mb-2 text-pink-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                関西エリア
+                            </h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                                <div>• 神戸ハーバーランドumie</div>
+                                <div>• エコール和泉中央</div>
+                                <div>• 伏見桃山</div>
+                                <div>• 加古川</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl">
+                            <h4 class="font-bold text-lg mb-2 text-green-700">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                その他エリア
+                            </h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                                <div>• イオンモール名取</div>
+                                <div>• 広島アルパーク</div>
+                                <div>• イオンモール浜松志都呂</div>
+                                <div>• フレスポしんかな</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button class="bg-pure-blue text-white px-6 py-3 rounded-full hover:bg-cyan-500 transition-colors w-full">
+                            <i class="fas fa-search mr-2"></i>
+                            詳細な店舗情報を見る
+                        </button>
+                    </div>
+                </div>
+
+                <!-- マップ -->
+                <div>
+                    <div class="bg-gray-200 rounded-2xl p-8 text-center h-96 flex items-center justify-center">
+                        <div>
+                            <i class="fas fa-map text-6xl text-gray-400 mb-4"></i>
+                            <p class="text-gray-600 text-lg font-semibold">Googleマップ</p>
+                            <p class="text-gray-500">店舗位置を確認</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-gradient-to-r from-pure-yellow to-orange-400 p-6 rounded-2xl text-center">
+                        <h4 class="text-white font-bold text-lg mb-2">
+                            <i class="fas fa-car mr-2"></i>
+                            アクセス抜群
+                        </h4>
+                        <p class="text-white text-sm">駅直結・大型駐車場完備で電車でも車でも便利！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- クロージング -->
+    <section class="py-20 gradient-bg print-section">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
+                    親子の休日を<span class="text-pure-yellow">もっとラクに</span>、<br>
+                    <span class="text-pure-pink">もっと楽しく</span>。<br>
+                    今だけ限定特典つき！
+                </h2>
+
+                <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-8 mb-12">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <i class="fas fa-clock text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="font-bold text-lg mb-2">待ち時間ゼロ</h3>
+                            <p class="text-sm text-gray-600">QR提示でスムーズ入場</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-gift text-3xl text-pink-500 mb-4"></i>
+                            <h3 class="font-bold text-lg mb-2">限定シール確実</h3>
+                            <p class="text-sm text-gray-600">来場のたび新しいシール</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-graduation-cap text-3xl text-green-500 mb-4"></i>
+                            <h3 class="font-bold text-lg mb-2">遊びが学びに</h3>
+                            <p class="text-sm text-gray-600">罪悪感ゼロで遊ばせられる</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最終CTA -->
+                <button class="cta-btn bg-gradient-to-r from-red-500 to-pink-500 text-white text-2xl lg:text-3xl font-black px-12 py-6 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 pulse-glow mb-8">
+                    <i class="fas fa-rocket mr-4"></i>
+                    30秒で完了 → 今すぐ登録してシールを手に入れる
+                </button>
+
+                <div class="text-white text-lg space-y-2">
+                    <p><i class="fas fa-check-circle mr-2 text-green-300"></i>登録完全無料</p>
+                    <p><i class="fas fa-shield-alt mr-2 text-blue-300"></i>SSL暗号化通信で安心</p>
+                    <p><i class="fas fa-user-shield mr-2 text-purple-300"></i>プライバシー保護対応</p>
+                </div>
+
+                <!-- 信頼要素 -->
+                <div class="mt-12 flex justify-center items-center gap-8 text-white/80">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">16</div>
+                        <div class="text-sm">全国店舗数</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">50万+</div>
+                        <div class="text-sm">年間来場者数</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold">4.8★</div>
+                        <div class="text-sm">お客様満足度</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 固定CTA -->
+    <div class="fixed-cta no-print">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-white">
+                    <div class="font-bold">残り <span id="bottomRemainingSlots">47</span> 名様限定！</div>
+                    <div class="text-sm opacity-90">今すぐ登録で限定シール確実ゲット</div>
+                </div>
+                <button class="cta-btn bg-white text-pink-600 font-bold px-6 py-3 rounded-full hover:scale-105 transition-all duration-300">
+                    30秒で登録完了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登録モーダル -->
+    <div id="registrationModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center no-print">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 relative">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
             
             <div class="text-center">
-                <p class="text-xl text-gray-300 mb-6">
-                    <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
-                    Don't let this be you. It's permanent.
+                <div class="w-16 h-16 bg-gradient-to-r from-pure-pink to-pure-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-gift text-white text-2xl"></i>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4">
+                    <span class="text-gradient">仮会員登録</span>
+                </h3>
+                <p class="text-gray-600 mb-6">30秒で完了！今すぐ限定シールをゲットしよう</p>
+                
+                <form id="registrationForm" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">お名前</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-pink focus:ring-2 focus:ring-pure-pink/20" placeholder="山田 太郎">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">メールアドレス</label>
+                        <input type="email" class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-pink focus:ring-2 focus:ring-pure-pink/20" placeholder="example@email.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">電話番号</label>
+                        <input type="tel" class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-pink focus:ring-2 focus:ring-pure-pink/20" placeholder="090-1234-5678">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">お子様の年齢</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:border-pure-pink focus:ring-2 focus:ring-pure-pink/20">
+                            <option>0歳</option>
+                            <option>1歳</option>
+                            <option>2歳</option>
+                            <option>3歳</option>
+                            <option>4歳</option>
+                            <option>5歳</option>
+                            <option>6歳</option>
+                            <option>7歳以上</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-pure-pink to-pure-orange text-white font-bold py-4 rounded-lg hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-gift mr-2"></i>
+                        登録完了してシールをゲット
+                    </button>
+                </form>
+                
+                <p class="text-xs text-gray-500 mt-4">
+                    登録することで、<a href="#" class="text-pure-pink underline">プライバシーポリシー</a>に同意したものとみなします
                 </p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Solution Section -->
-    <section class="py-16 px-4 bg-black">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-8">
-                <span class="japanese-accent">Our Solution</span><br>
-                Native Japanese Expert Consultation
-            </h2>
+    <!-- Exit Intent ポップアップ -->
+    <div id="exitModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center no-print">
+        <div class="bg-white rounded-3xl p-8 max-w-lg mx-4 relative text-center">
+            <button id="closeExitModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
             
-            <div class="bg-gray-900 rounded-2xl p-8 mb-12">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-paper-plane text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">1. Send Your Idea</h3>
-                        <p class="text-gray-400">Message us your tattoo idea via Instagram DM</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-search text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">2. Expert Review</h3>
-                        <p class="text-gray-400">Native Japanese expert checks meaning & suggests improvements</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="bg-purple-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-thumbs-up text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">3. Get It Right</h3>
-                        <p class="text-gray-400">Make a confident, informed decision</p>
-                    </div>
-                </div>
+            <div class="animate-bounce mb-6">
+                <i class="fas fa-exclamation-triangle text-6xl text-red-500"></i>
             </div>
             
-            <div class="bg-gradient-to-r from-green-900 to-blue-900 rounded-2xl p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-4">
-                    <i class="fas fa-gift text-yellow-400 mr-3"></i>
-                    Why Choose Our Service?
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                        <span>100% Native Japanese Speakers</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                        <span>Instant Response via Instagram</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                        <span>Cultural Context Included</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                        <span>Free Design Suggestions</span>
-                    </div>
-                </div>
+            <h3 class="text-3xl font-bold mb-4 text-red-600">ちょっと待って！</h3>
+            <p class="text-xl mb-6">限定シールを逃してしまいますよ！</p>
+            
+            <div class="bg-red-50 p-6 rounded-2xl mb-6">
+                <h4 class="font-bold text-lg mb-2">今だけ特典</h4>
+                <ul class="text-left space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>登録完全無料</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>待ち時間ゼロで入場</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>限定シール必ずもらえる</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>5枚集めると特別プレゼント</li>
+                </ul>
             </div>
+            
+            <button class="cta-btn bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold text-xl px-8 py-4 rounded-full hover:scale-105 transition-all duration-300">
+                <i class="fas fa-gift mr-2"></i>
+                やっぱり登録する（30秒）
+            </button>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-16 px-4 bg-gray-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                What Our Clients Say
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-2xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">S</span>
-                        </div>
-                        <div>
-                            <div class="font-bold">Sarah M.</div>
-                            <div class="text-gray-400 text-sm">🇺🇸 USA</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">"Almost got '便所紙' tattooed thinking it meant 'strength'. Thank god I checked with them first!"</p>
-                    <div class="text-yellow-400">★★★★★</div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">M</span>
-                        </div>
-                        <div>
-                            <div class="font-bold">Mike T.</div>
-                            <div class="text-gray-400 text-sm">🇬🇧 UK</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">"They saved me from a lifetime of embarrassment. The cultural context they provided was invaluable."</p>
-                    <div class="text-yellow-400">★★★★★</div>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">E</span>
-                        </div>
-                        <div>
-                            <div class="font-bold">Emma L.</div>
-                            <div class="text-gray-400 text-sm">🇦🇺 Australia</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">"Super fast response and they explained everything perfectly. Now I have a beautiful, meaningful tattoo!"</p>
-                    <div class="text-yellow-400">★★★★★</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-16 px-4 bg-black relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 text-9xl opacity-20">⚠️</div>
-            <div class="absolute top-20 right-0 text-7xl opacity-15">🚨</div>
-            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-8xl opacity-10">⏰</div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="text-3xl md:text-5xl font-bold mb-6">
-                It's a <span class="text-red-400">Once-in-a-Lifetime</span> Decision
-            </h2>
-            
-            <p class="text-xl md:text-2xl mb-8 text-gray-300">
-                Don't let a simple Google Translate mistake ruin your body art forever.
-            </p>
-            
-            <div class="bg-gradient-to-r from-red-900 to-yellow-900 rounded-2xl p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-4">
-                    <i class="fas fa-clock text-yellow-400 mr-3"></i>
-                    Get Your FREE Check Now - Takes 2 Minutes
-                </h3>
-                <p class="text-gray-300 mb-6">
-                    Over 5,000 tourists have already avoided embarrassing mistakes.<br>
-                    Join them before it's too late.
-                </p>
-                
-                <a href="https://instagram.com/direct/inbox/" target="_blank" class="cta-button text-black font-bold text-xl px-12 py-6 rounded-full inline-flex items-center text-center">
-                    <i class="fab fa-instagram mr-3 text-2xl"></i>
-                    Start Your FREE Consultation Now
-                </a>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div class="flex items-center justify-center">
-                    <i class="fas fa-bolt text-yellow-400 mr-2"></i>
-                    <span>Instant Response</span>
-                </div>
-                <div class="flex items-center justify-center">
-                    <i class="fas fa-shield-alt text-green-400 mr-2"></i>
-                    <span>100% Free Service</span>
-                </div>
-                <div class="flex items-center justify-center">
-                    <i class="fas fa-heart text-red-400 mr-2"></i>
-                    <span>5,000+ Happy Clients</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 px-4 bg-gray-900 text-center text-gray-400">
-        <p>&copy; 2024 Japanese Tattoo Consultation Service. Helping tourists get their tattoos right since 2020.</p>
-    </footer>
+    </div>
 
     <script>
-        // Add smooth scrolling for better UX
+        // A/Bテスト機能
+        const abTestVariant = Math.random() < 0.5 ? 'A' : 'B';
+        console.log('A/B Test Variant:', abTestVariant);
+
+        if (abTestVariant === 'B') {
+            // バリアントB: 時短訴求を強化
+            document.querySelectorAll('.cta-btn').forEach(btn => {
+                if (btn.textContent.includes('シール')) {
+                    btn.innerHTML = '<i class="fas fa-clock mr-2"></i>待ち時間ゼロで入場！今すぐ登録';
+                }
+            });
+        }
+
+        // 動的カウンター
+        let remainingSlots = 47;
+        let snsCount = 2431;
+
+        function updateCounters() {
+            // 残席数を減少
+            if (Math.random() < 0.3 && remainingSlots > 15) {
+                remainingSlots--;
+                document.getElementById('remainingSlots').textContent = remainingSlots;
+                document.getElementById('bottomRemainingSlots').textContent = remainingSlots;
+            }
+            
+            // SNS投稿数を増加
+            if (Math.random() < 0.4) {
+                snsCount++;
+                document.getElementById('snsCount').textContent = snsCount.toLocaleString();
+            }
+        }
+
+        // 10-30秒間隔でカウンター更新
+        setInterval(updateCounters, Math.random() * 20000 + 10000);
+
+        // CTAボタンクリックイベント
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('registrationModal').classList.remove('hidden');
+                document.getElementById('registrationModal').classList.add('flex');
+            });
+        });
+
+        // モーダル閉じる
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('registrationModal').classList.add('hidden');
+            document.getElementById('registrationModal').classList.remove('flex');
+        });
+
+        // Exit Intent検知
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitIntentShown && window.innerWidth > 768) {
+                exitIntentShown = true;
+                document.getElementById('exitModal').classList.remove('hidden');
+                document.getElementById('exitModal').classList.add('flex');
+            }
+        });
+
+        // Exit モーダル閉じる
+        document.getElementById('closeExitModal').addEventListener('click', () => {
+            document.getElementById('exitModal').classList.add('hidden');
+            document.getElementById('exitModal').classList.remove('flex');
+        });
+
+        // Exit モーダルからの登録
+        document.querySelector('#exitModal .cta-btn').addEventListener('click', () => {
+            document.getElementById('exitModal').classList.add('hidden');
+            document.getElementById('exitModal').classList.remove('flex');
+            document.getElementById('registrationModal').classList.remove('hidden');
+            document.getElementById('registrationModal').classList.add('flex');
+        });
+
+        // 70%スクロールでCTA強調
+        let scrollCtaShown = false;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            if (scrollPercent > 70 && !scrollCtaShown) {
+                scrollCtaShown = true;
+                document.querySelector('.fixed-cta').style.animation = 'pulse 2s infinite';
+                
+                // 3秒後にアニメーション停止
+                setTimeout(() => {
+                    document.querySelector('.fixed-cta').style.animation = '';
+                }, 3000);
+            }
+        });
+
+        // FAQ アコーディオン
+        document.querySelectorAll('.faq-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+
+        // 登録フォーム送信
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 成功メッセージ表示
+            const modal = document.getElementById('registrationModal');
+            modal.innerHTML = `
+                <div class="bg-white rounded-3xl p-8 text-center relative">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-green-600">登録完了！</h3>
+                    <p class="text-gray-700 mb-6">QRコードをメールで送信しました。<br>来場時に受付で提示してシールをゲットしてください！</p>
+                    <button onclick="location.reload()" class="bg-gradient-to-r from-pure-pink to-pure-orange text-white font-bold px-8 py-3 rounded-full">
+                        閉じる
+                    </button>
+                </div>
+            `;
+            
+            // データ保存（A/Bテスト用）
+            console.log('Registration completed - Variant:', abTestVariant);
+        });
+
+        // PDF保存機能
+        document.getElementById('pdfSaveBtn').addEventListener('click', () => {
+            window.print();
+        });
+
+        // スムーズスクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // パフォーマンス最適化: 画像の遅延読み込み
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
                 });
             });
-        });
 
-        // Add hover effects to stat cards
-        document.querySelectorAll('.stat-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 10px 20px rgba(255, 255, 255, 0.1)';
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
-
-        // Add click tracking for CTA buttons
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Add analytics or tracking code here
-                console.log('CTA clicked - redirecting to Instagram DM');
-            });
-        });
+        }
     </script>
 </body>
 </html>
